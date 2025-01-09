@@ -24,9 +24,38 @@
     <main>
         <slot />
     </main>
+    <!-- A LEFT ARROW IF CLICKED WILL OPEN A NEW COMPONENT -->
+    <div class="fixed right-3 top-1/2 transform -translate-y-1/2">
+        <i class="fa-duotone fa-solid fa-angles-left fa-fade fa-2xl"></i>
+    </div>
+    <footer class="fixed bottom-0 w-full py-10">
+        <ul class="flex items-center justify-center gap-10">
+            <li v-for="(image, index) in imagePaths" :key="index">
+            <img :src="image" alt="Skills" class="w-10 h-10 mx-2" />
+          </li>
+          <i class="fa-brands fa-vuejs fa-2xl text-[#00adb5]"></i>
+        </ul>
+    </footer>
 </template>
 
-<script setup></script>
+<script setup>
+
+import { ref } from 'vue';
+const imagePaths = ref([
+  '/images/bootstrap.png',
+  '/images/ci.png',
+  '/images/css.png',
+  '/images/github.png',
+  '/images/html.png',
+    '/images/js.png',
+    '/images/laravel.png',
+    '/images/mysql.png',
+    '/images/php.png',
+    '/images/sass.png',
+    '/images/tailwind.png',
+    '/images/wordpress.png'
+]);
+</script>
 
 <style scoped>
 .contact {position: relative;}
@@ -34,5 +63,13 @@
 .contact a:hover{color: #00adb5;}
 .socMed a:hover{transform: scale(1.2);color: #00adb5;}
 .socMed a{transition: transform .8s;}
+.fa-duotone {
+    animation: blinkingText 1.5s infinite;
+}
 
+@keyframes blinkingText {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
 </style>
