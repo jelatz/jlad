@@ -9,6 +9,6 @@ use Inertia\Inertia;
 // Route::get('/', function () {
 //     return Inertia::render('Home');
 // });
-Route::inertia('/', 'Home');
+Route::inertia('/', 'Home')->name('home');
 Route::inertia('/about', 'About', ['user' => 'Michael']);
 Route::inertia('/projects', 'Projects')->name('projects');

@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     @vite(['resources/js/app.js','resources/css/app.css'])
     @inertiaHead
+    @routes
 </head>
 
 <body class="font-lexend bg-[#222831] min-h-screen text-white antialiased">

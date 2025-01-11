@@ -18,6 +18,9 @@ export default {
                 lexend: ['Lexend', 'serif'],
             },
         },
+        container:{
+            center: true,
+        }
     },
     plugins: [],
 };
