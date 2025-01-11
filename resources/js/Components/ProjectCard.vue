@@ -6,6 +6,10 @@
         <p class="text-sm text-gray-500">Project Description</p>
         <p class="text-sm text-gray-500">Project Description</p>
         <p class="text-sm text-gray-500">Project Description</p>
+        <p class="text-sm text-gray-500">Project Description</p>
+        <p class="text-sm text-gray-500">Project Description</p>
+        <p class="text-sm text-gray-500">Project Description</p>
+        <p class="text-sm text-gray-500">Project Description</p>
     </div>
 </template>
 
