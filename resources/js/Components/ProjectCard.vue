@@ -5,6 +5,11 @@
             <h1 class="text-lg text-white font-bold">{{ title }}</h1>
             <p class="text-sm mt-1">{{ description }}</p>
         </div>
+        <div>
+            <a :href="githubLink" target="_blank">
+                <i class="fab fa-github text-2xl text-white"></i>
+            </a>
+        </div>
     </div>
 </template>
 
@@ -26,6 +31,9 @@ defineProps({
     description: {
         type: String,
         required: true
+    },
+    githubLink: {
+        type: String,
     }
 })
 </script>

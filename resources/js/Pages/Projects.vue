@@ -12,7 +12,7 @@
         <h1 class="text-center text-5xl font-bold">My work</h1>
         <div class="mt-5 flex justify-between items-center flex-col">
             <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
-                :title="project.title" :description="project.description" />
+                :title="project.title" :description="project.description" :githubLink="project.github" />
         </div>
     </div>
 </template>
@@ -26,13 +26,15 @@ const projects = ref([
         img: '/images/projects/index.png',
         alt: 'Saekyung Auxilium',
         title: 'Saekyung Auxilium',
-        description: 'This is my capstone project'
+        description: 'This is my capstone project. A web application that helps the Saekyung Condominium to manage their residents and visitor concerns.',
+        github: 'https://github.com/jelatz/Saekyung-Auxilium'
     },
     {
         img: '/images/projects/dashboard.png',
         alt: 'Healteeth',
         title: 'Healteeth',
-        description: 'This is a side project'
+        description: 'This is a side project',
+        github: 'https://github.com/jelatz/healteeth'
     },
     {
         img: '/images/projects/enrichment-unlimited.jpg',
