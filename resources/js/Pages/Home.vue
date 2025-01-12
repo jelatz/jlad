@@ -1,14 +1,14 @@
 <template>
 
     <Head title=" | Portfolio" />
-    <div class="flex justify-center items-center mt-48 flex-col">
-        <h1 class="text-9xl uppercase font-bold text-[#00adb5]">Jlad Lanete</h1>
+    <div class="flex justify-center items-center mt-48 flex-col px-5">
+        <h1 class="text-9xl uppercase font-bold text-[#00adb5] text-center">Jlad Lanete</h1>
         <div class="mt-5">
             <span class="text-6xl font-normal">{{ displayedText }}</span>
             <span v-if="isTyping" class="cursor text-6xl">|</span>
         </div>
     </div>
-    <div class="mt-32 w-full">
+    <div class="my-36 w-full">
         <ul class="flex items-center justify-center gap-10">
             <li v-for="(image, index) in imagePaths" :key="index">
                 <img :src="image" alt="Skills" class="w-10 h-10 mx-2" />
