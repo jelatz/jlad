@@ -12,7 +12,7 @@
             <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
                 :title="project.title" :description="project.description" :githubLink="project.github"
                 :opposite="project.opposite" :hasGithub="project.hasGithub" :isLive="project.isLive"
-                :siteLink="project.siteLink" />
+                :siteLink="project.siteLink" :stacks="project.stacks" />
         </div>
     </div>
 </template>
@@ -28,7 +28,8 @@ const projects = ref([
         title: 'Saekyung Auxilium',
         description: 'This is my capstone project. It is a web application designed to help Saekyung Condominium manage resident and visitor concerns. The system allows homeowners to easily report issues, and enables the admin to efficiently track and manage these concerns.',
         github: 'https://github.com/jelatz/Saekyung-Auxilium',
-        hasGithub: true
+        hasGithub: true,
+        stacks: ['fa-brands fa-html5', 'fa-brands fa-css3', 'fa-brands fa-js', 'fa-brands fa-php', 'fa-brands fa-bootstrap'],
     },
     {
         img: '/images/projects/dashboard.png',
@@ -37,7 +38,8 @@ const projects = ref([
         description: 'Healteeth is a web application that helps dental clinics manage their patients and appointments. It allows patients to easily book appointments online, and enables the clinic to efficiently manage their schedules.',
         github: 'https://github.com/jelatz/healteeth',
         hasGithub: true,
-        opposite: true
+        opposite: true,
+        stacks: ['fa-brands fa-html5', 'fa-brands fa-css3', 'fa-brands fa-js', 'fa-brands fa-php', 'fa-brands fa-bootstrap'],
     },
     {
         img: '/images/projects/enrichment-unlimited.jpg',
@@ -45,7 +47,8 @@ const projects = ref([
         title: 'Enrichment Unlimited',
         description: 'Enrichment Unlimited is a coaching and consulting company that helps individuals and organizations reach their full potential. This project was created using wordpress.',
         isLive: true,
-        siteLink: 'https://integritysupportnd.com'
+        siteLink: 'https://integritysupportnd.com',
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
     },
     {
         img: '/images/projects/integrity-support-services.jpg',
@@ -54,7 +57,8 @@ const projects = ref([
         description: 'A professional home care agency that provides services to individuals with health care needs and other related services. This project was created using wordpress.',
         opposite: true,
         isLive: true,
-        siteLink: 'https://integritysupportnd.com/about/'
+        siteLink: 'https://integritysupportnd.com/about/',
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
     },
     {
         img: '/images/projects/lyons-global.jpg',
@@ -62,7 +66,8 @@ const projects = ref([
         title: 'Lyons Global',
         description: 'Lyons Global® is a pioneering international digital health solutions company based in the United States. We provide easy-to-use, adaptable, and accessible products that expand the geographical reach of healthcare delivery. Leveraging cutting-edge robots and digital platforms, we enable seamless access to quality care across borders.',
         isLive: true,
-        siteLink: 'https://lyonsglobal.us/'
+        siteLink: 'https://lyonsglobal.us/',
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
     },
     {
         img: '/images/projects/nj-leaf.jpg',
@@ -71,7 +76,8 @@ const projects = ref([
         description: 'NJ Leaf is a premier cannabis dispensary offering exceptional products and service to both medical patients and recreational customers. Our knowledgeable staff provides compassionate care, personalized guidance, and a curated selection of top-quality cannabis. We prioritize quality, trust, and education to enhance the well-being of our diverse clientele. Woman-owned, minority-owned, and pharmacist-operated, NJ Leaf is dedicated to holistic healing and an exceptional customer experience.',
         opposite: true,
         isLive: true,
-        siteLink: 'https://njleaf.com/'
+        siteLink: 'https://njleaf.com/',
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
     },
     {
         img: '/images/projects/one-heart-medical-staffing.jpg',
@@ -79,7 +85,8 @@ const projects = ref([
         title: 'One Heart Medical Staffing',
         description: 'A healthcare staffing agency that provides staffing solutions to healthcare facilities. This project was created using wordpress.',
         isLive: true,
-        siteLink: 'http://www.oneheartmedicalstaffing.com/'
+        siteLink: 'http://www.oneheartmedicalstaffing.com/',
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
     },
 ])
 </script>

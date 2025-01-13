@@ -8,9 +8,12 @@
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
                         <i class="fab fa-github text-2xl text-white"></i>
                     </a>
-                    <a :href="siteLink" target="_blank" v-if="isLive">
+                    <a :href="siteLink" target="_blank" v-if="isLive" class="text-[#00adb5]">
                         Visit Website
                     </a>
+                </div>
+                <div class="flex space-x-3 mt-2">
+                    <i v-for="(stack, index) in stacks" :key="index" :class="stack" class="text-2xl text-[#00adb5]"></i>
                 </div>
             </div>
             <img :src="img" :alt="alt" class="object-contain w-[30rem] rounded-md">
@@ -24,9 +27,12 @@
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
                         <i class="fab fa-github text-2xl text-white"></i>
                     </a>
-                    <a :href="siteLink" target="_blank" v-if="isLive">
+                    <a :href="siteLink" target="_blank" v-if="isLive" class="text-[#00adb5]">
                         Visit Website
                     </a>
+                </div>
+                <div class="flex space-x-3 mt-2">
+                    <i v-for="(stack, index) in stacks" :key="index" :class="stack" class="text-2xl text-[#00adb5]"></i>
                 </div>
             </div>
         </template>
@@ -65,8 +71,15 @@ defineProps({
     },
     siteLink: {
         type: String
-    }
+    },
+    stacks: {
+        type: Array
+    },
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.fa-github:hover {
+    color: #00adb5;
+}
+</style>
