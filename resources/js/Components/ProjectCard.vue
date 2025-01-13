@@ -8,6 +8,9 @@
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
                         <i class="fab fa-github text-2xl text-white"></i>
                     </a>
+                    <a :href="siteLink" target="_blank" v-if="isLive">
+                        Visit Website
+                    </a>
                 </div>
             </div>
             <img :src="img" :alt="alt" class="object-contain w-[30rem] rounded-md">
@@ -20,6 +23,9 @@
                 <div class="flex items-center space-x-2 mt-2">
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
                         <i class="fab fa-github text-2xl text-white"></i>
+                    </a>
+                    <a :href="siteLink" target="_blank" v-if="isLive">
+                        Visit Website
                     </a>
                 </div>
             </div>
@@ -53,6 +59,12 @@ defineProps({
     },
     hasGithub: {
         type: Boolean
+    },
+    isLive: {
+        type: Boolean
+    },
+    siteLink: {
+        type: String
     }
 })
 </script>

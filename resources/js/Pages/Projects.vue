@@ -11,7 +11,8 @@
         <div class="mt-5 flex justify-between items-center flex-col space-y-10">
             <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
                 :title="project.title" :description="project.description" :githubLink="project.github"
-                :opposite="project.opposite" :hasGithub="project.hasGithub" />
+                :opposite="project.opposite" :hasGithub="project.hasGithub" :isLive="project.isLive"
+                :siteLink="project.siteLink" />
         </div>
     </div>
 </template>
@@ -25,7 +26,7 @@ const projects = ref([
         img: '/images/projects/index.png',
         alt: 'Saekyung Auxilium',
         title: 'Saekyung Auxilium',
-        description: 'This is my capstone project. A web application that helps the Saekyung Condominium to manage their residents and visitor concerns.',
+        description: 'This is my capstone project. It is a web application designed to help Saekyung Condominium manage resident and visitor concerns. The system allows homeowners to easily report issues, and enables the admin to efficiently track and manage these concerns.',
         github: 'https://github.com/jelatz/Saekyung-Auxilium',
         hasGithub: true
     },
@@ -33,7 +34,7 @@ const projects = ref([
         img: '/images/projects/dashboard.png',
         alt: 'Healteeth',
         title: 'Healteeth',
-        description: 'This is a side project',
+        description: 'Healteeth is a web application that helps dental clinics manage their patients and appointments. It allows patients to easily book appointments online, and enables the clinic to efficiently manage their schedules.',
         github: 'https://github.com/jelatz/healteeth',
         hasGithub: true,
         opposite: true
@@ -42,34 +43,44 @@ const projects = ref([
         img: '/images/projects/enrichment-unlimited.jpg',
         alt: 'Enrichment Unlimited',
         title: 'Enrichment Unlimited',
-        description: 'This is my capstone project. A web application that helps the Saekyung Condominium to manage their residents and visitor concerns.',
+        description: 'Enrichment Unlimited is a coaching and consulting company that helps individuals and organizations reach their full potential. This project was created using wordpress.',
+        isLive: true,
+        siteLink: 'https://integritysupportnd.com'
     },
     {
         img: '/images/projects/integrity-support-services.jpg',
         alt: 'Integrity Support Services',
         title: 'Integrity Support Services',
-        description: 'Project created from previous company using wordpress. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.',
-        opposite: true
+        description: 'A professional home care agency that provides services to individuals with health care needs and other related services. This project was created using wordpress.',
+        opposite: true,
+        isLive: true,
+        siteLink: 'https://integritysupportnd.com/about/'
     },
     {
         img: '/images/projects/lyons-global.jpg',
         alt: 'Lyons Global',
         title: 'Lyons Global',
-        description: 'Freelance Project lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.',
+        description: 'Lyons Global® is a pioneering international digital health solutions company based in the United States. We provide easy-to-use, adaptable, and accessible products that expand the geographical reach of healthcare delivery. Leveraging cutting-edge robots and digital platforms, we enable seamless access to quality care across borders.',
+        isLive: true,
+        siteLink: 'https://lyonsglobal.us/'
     },
     {
         img: '/images/projects/nj-leaf.jpg',
         alt: 'NJ Leaf',
         title: 'NJ Leaf',
-        description: 'Project created from previous company using wordpress lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.',
-        opposite: true
+        description: 'NJ Leaf is a premier cannabis dispensary offering exceptional products and service to both medical patients and recreational customers. Our knowledgeable staff provides compassionate care, personalized guidance, and a curated selection of top-quality cannabis. We prioritize quality, trust, and education to enhance the well-being of our diverse clientele. Woman-owned, minority-owned, and pharmacist-operated, NJ Leaf is dedicated to holistic healing and an exceptional customer experience.',
+        opposite: true,
+        isLive: true,
+        siteLink: 'https://njleaf.com/'
     },
     {
         img: '/images/projects/one-heart-medical-staffing.jpg',
         alt: 'One Heart Medical Staffing',
         title: 'One Heart Medical Staffing',
-        description: 'Project created from previous company using wordpress lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.',
-    }
+        description: 'A healthcare staffing agency that provides staffing solutions to healthcare facilities. This project was created using wordpress.',
+        isLive: true,
+        siteLink: 'http://www.oneheartmedicalstaffing.com/'
+    },
 ])
 </script>
 
