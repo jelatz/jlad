@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-lg p-4 w-[60rem] flex justify-between text-left space-x-5">
+    <div class="rounded-lg p-4 w-[60rem] flex justify-between text-left space-x-5 project-card">
         <template v-if="opposite">
             <div>
                 <h1 class="text-lg text-white font-bold">{{ title }}</h1>

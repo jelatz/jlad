@@ -7,8 +7,8 @@
     </div>
 
     <div class="mt-10 container">
-        <h1 class="text-center text-5xl font-bold">My work</h1>
-        <div class="mt-5 flex justify-between items-center flex-col space-y-10">
+        <h1 class="text-center text-7xl font-bold">My work</h1>
+        <div class="mt-10 flex justify-between items-center flex-col space-y-28">
             <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
                 :title="project.title" :description="project.description" :githubLink="project.github"
                 :opposite="project.opposite" :hasGithub="project.hasGithub" :isLive="project.isLive"
@@ -91,4 +91,35 @@ const projects = ref([
 ])
 </script>
 
-<style scoped></style>
+<style scoped>
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.project-card:nth-child(odd) {
+    animation: slideInLeft 1.5s ease-in-out;
+}
+
+.project-card:nth-child(even) {
+    animation: slideInRight 1.5s ease-in-out;
+}
+
+</style>
