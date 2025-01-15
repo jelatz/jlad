@@ -12,7 +12,7 @@
             <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
                 :title="project.title" :description="project.description" :githubLink="project.github"
                 :opposite="project.opposite" :hasGithub="project.hasGithub" :isLive="project.isLive"
-                :siteLink="project.siteLink" :stacks="project.stacks" />
+                :siteLink="project.siteLink" :stacks="project.stacks" :ifMysql="project.isMysql" :mysqlImg="mysqlImg" />
         </div>
     </div>
 </template>
@@ -20,6 +20,8 @@
 <script setup>
 import { ref } from 'vue';
 import ProjectCard from '@/Components/ProjectCard.vue';
+
+const mysqlImg = '/images/mysql.svg';
 
 const projects = ref([
     {
@@ -30,6 +32,7 @@ const projects = ref([
         github: 'https://github.com/jelatz/Saekyung-Auxilium',
         hasGithub: true,
         stacks: ['fa-brands fa-html5', 'fa-brands fa-css3', 'fa-brands fa-js', 'fa-brands fa-php', 'fa-brands fa-bootstrap'],
+        isMysql: true
     },
     {
         img: '/images/projects/dashboard.png',
@@ -39,7 +42,8 @@ const projects = ref([
         github: 'https://github.com/jelatz/healteeth',
         hasGithub: true,
         opposite: true,
-        stacks: ['fa-brands fa-html5', 'fa-brands fa-css3', 'fa-brands fa-js', 'fa-brands fa-php', 'fa-brands fa-bootstrap'],
+        stacks: ['fa-brands fa-html5', 'fa-brands fa-css3', 'fa-brands fa-js', 'fa-brands fa-php', 'fa-brands fa-bootstrap', 'fa-brands fa-mysql'],
+        isMysql: true
     },
     {
         img: '/images/projects/enrichment-unlimited.jpg',
@@ -48,7 +52,8 @@ const projects = ref([
         description: 'Enrichment Unlimited is a coaching and consulting company that helps individuals and organizations reach their full potential. This project was created using wordpress.',
         isLive: true,
         siteLink: 'https://integritysupportnd.com',
-        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php'],
+        isMysql: true
     },
     {
         img: '/images/projects/integrity-support-services.jpg',
@@ -58,7 +63,8 @@ const projects = ref([
         opposite: true,
         isLive: true,
         siteLink: 'https://integritysupportnd.com/about/',
-        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php'],
+        isMysql: true
     },
     {
         img: '/images/projects/lyons-global.jpg',
@@ -67,7 +73,8 @@ const projects = ref([
         description: 'Lyons Global® is a pioneering international digital health solutions company based in the United States. We provide easy-to-use, adaptable, and accessible products that expand the geographical reach of healthcare delivery. Leveraging cutting-edge robots and digital platforms, we enable seamless access to quality care across borders.',
         isLive: true,
         siteLink: 'https://lyonsglobal.us/',
-        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php'],
+        isMysql: true
     },
     {
         img: '/images/projects/nj-leaf.jpg',
@@ -77,7 +84,8 @@ const projects = ref([
         opposite: true,
         isLive: true,
         siteLink: 'https://njleaf.com/',
-        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php'],
+        isMysql: true
     },
     {
         img: '/images/projects/one-heart-medical-staffing.jpg',
@@ -86,7 +94,8 @@ const projects = ref([
         description: 'A healthcare staffing agency that provides staffing solutions to healthcare facilities. This project was created using wordpress.',
         isLive: true,
         siteLink: 'http://www.oneheartmedicalstaffing.com/',
-        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php']
+        stacks: ['fa-brands fa-wordpress', 'fa-brands fa-php'],
+        isMysql: true
     },
 ])
 </script>
@@ -121,5 +130,4 @@ const projects = ref([
 .project-card:nth-child(even) {
     animation: slideInRight 1.5s ease-in-out;
 }
-
 </style>

@@ -14,6 +14,7 @@
                 </div>
                 <div class="flex space-x-3 mt-2">
                     <i v-for="(stack, index) in stacks" :key="index" :class="stack" class="text-2xl text-[#00adb5]"></i>
+                    <img :src="mysqlImg" alt="mysql" v-if="ifMysql" class="w-[27px] h-[25px] text-[#00adb5]">
                 </div>
             </div>
             <img :src="img" :alt="alt" class="object-contain w-[30rem] rounded-md">
@@ -31,8 +32,9 @@
                         Visit Website
                     </a>
                 </div>
-                <div class="flex space-x-3 mt-2">
+                <div class="flex space-x-3 mt-2 items-center">
                     <i v-for="(stack, index) in stacks" :key="index" :class="stack" class="text-2xl text-[#00adb5]"></i>
+                    <img :src="mysqlImg" alt="mysql" v-if="ifMysql" class="w-[27px] h-[25px] text-[#00adb5]">
                 </div>
             </div>
         </template>
@@ -40,6 +42,8 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
+
 defineProps({
     img: {
         type: String,
@@ -75,7 +79,14 @@ defineProps({
     stacks: {
         type: Array
     },
-})
+    ifMysql: {
+        type: Boolean
+    },
+    mysqlImg: {
+        type: String,
+        required: true
+    }
+});
 </script>
 
 <style scoped>
