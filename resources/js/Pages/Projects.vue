@@ -9,10 +9,7 @@
     <div class="mt-10 container">
         <h1 class="text-center text-7xl font-bold">My work</h1>
         <div class="mt-10 flex justify-between items-center flex-col space-y-28">
-            <ProjectCard v-for="(project, index) in projects" :key="index" :img="project.img" :alt="project.alt"
-                :title="project.title" :description="project.description" :githubLink="project.github"
-                :opposite="project.opposite" :hasGithub="project.hasGithub" :isLive="project.isLive"
-                :siteLink="project.siteLink" :stacks="project.stacks" :ifMysql="project.isMysql" :mysqlImg="mysqlImg" />
+            <ProjectCard v-for="(project, index) in projects" :key="index" :data="project" />
         </div>
     </div>
 </template>
@@ -20,8 +17,6 @@
 <script setup>
 import { ref } from 'vue';
 import ProjectCard from '@/Components/ProjectCard.vue';
-
-const mysqlImg = '/images/mysql.svg';
 
 const projects = ref([
     {
