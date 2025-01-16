@@ -22,7 +22,7 @@
     <!-- <div class="fixed right-3 top-1/2 transform -translate-y-1/2">
         <i class="fa-duotone fa-solid fa-angles-left fa-fade fa-2xl"></i>
     </div> -->
-    <footer class="relative bottom-0 w-full py-2">
+    <footer class="relative bottom-0 w-full py-2 mt-3">
         <p class="text-center">All rights reserved <span class="font-bold">Jlad Lanete 2024 &copy;</span></p>
     </footer>
 </template>

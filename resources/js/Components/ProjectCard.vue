@@ -6,7 +6,7 @@
                 <p class="text-sm mt-1">{{ description }}</p>
                 <div class="flex items-center space-x-2 mt-2">
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
-                        <i class="fab fa-github text-2xl text-white"></i>
+                        <i class="fab fa-github text-2xl text-[#00adb5]"></i>
                     </a>
                     <a :href="siteLink" target="_blank" v-if="isLive" class="text-[#00adb5]">
                         Visit Website
@@ -25,7 +25,7 @@
                 <p class="text-sm mt-1">{{ description }}</p>
                 <div class="flex items-center space-x-2 mt-2">
                     <a :href="githubLink" target="_blank" v-if="hasGithub">
-                        <i class="fab fa-github text-2xl text-white"></i>
+                        <i class="fab fa-github text-2xl text-[#00adb5]"></i>
                     </a>
                     <a :href="siteLink" target="_blank" v-if="isLive" class="text-[#00adb5]">
                         Visit Website
