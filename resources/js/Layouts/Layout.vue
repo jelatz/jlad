@@ -6,9 +6,10 @@
                 <a href="tel:+639760275569" class="text-lg">09760275569</a>
             </div>
             <div class="flex items-center space-x-28 socMed">
-                <Link href="/"><i class="fas fa-solid fa-blog text-xl"></i></Link>
-                <Link href="projects"><i class="fas fa-solid fa-briefcase text-xl"></i></Link>
-                <a href="https://www.linkedin.com/in/jladlanete/" target="_blank"><i class="fas fa-brands fa-linkedin text-xl"></i>
+                <Link :href="route('blog')"><i class="fas fa-solid fa-blog text-xl"></i></Link>
+                <Link :href="route('projects')"><i class="fas fa-solid fa-briefcase text-xl"></i></Link> <a
+                    href="https://www.linkedin.com/in/jladlanete/" target="_blank"><i
+                        class="fas fa-brands fa-linkedin text-xl"></i>
                 </a>
                 <a href="https://github.com/jelatz?tab=overview&from=2025-01-01&to=2025-01-10" target="_blank"><i
                         class="fas fa-brands fa-github text-xl"></i></a>
