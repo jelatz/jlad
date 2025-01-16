@@ -12,3 +12,4 @@ use Inertia\Inertia;
 Route::inertia('/', 'Home')->name('home');
 Route::inertia('/about', 'About', ['user' => 'Michael']);
 Route::inertia('/projects', 'Projects')->name('projects');
+Route::inertia('/blog', 'Blog')->name('blog');
