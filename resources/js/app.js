@@ -3,6 +3,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import Layout from './Layouts/Layout.vue';
+import $ from 'jquery';
+window.$ = window.jQuery = $;
 
 createInertiaApp({
   title: (title) => `Jlad ${title}`,

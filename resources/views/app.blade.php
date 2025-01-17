@@ -12,6 +12,7 @@
 
 <body class="font-lexend bg-[#222831] min-h-screen text-white antialiased">
     @inertia
+
 </body>
 
 </html>
