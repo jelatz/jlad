@@ -1,4 +1,6 @@
 <template>
+
+    <Head title=" | Projects" />
     <div class="flex items-center justify-center w-fit px-5 py-1 bg-[#353b44] rounded-full ml-5">
         <Link :href="route('home')">
         <i class="fa-solid fa-arrow-left"></i>
@@ -101,6 +103,7 @@ const projects = ref([
         transform: translateX(-100%);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -112,6 +115,7 @@ const projects = ref([
         transform: translateX(100%);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;

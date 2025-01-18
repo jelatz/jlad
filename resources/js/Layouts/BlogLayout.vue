@@ -2,7 +2,7 @@
     <div class="blog-layout">
         <header class="py-4">
             <img :src="Logo" alt="" class="w-60 mx-auto" />
-            <nav class="mt-4">
+            <nav class="mt-8">
                 <ul class="flex items-center space-x-10 text-black text-center justify-center">
                     <li>
                         <Link :href="route('blog')">Home </Link>
@@ -21,7 +21,7 @@
             </nav>
         </header>
         <!-- Hero Images -->
-        <Hero />
+        <!-- <Hero /> -->
         <main>
             <slot />
         </main>
@@ -30,7 +30,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import Hero from "@/Components/Hero.vue";
+// import Hero from "@/Components/Hero.vue";
 import DropdownMenu from "@/Components/DropdownMenu.vue";
 const Logo = ref("/images/logo.jpeg");
 

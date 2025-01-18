@@ -1,4 +1,5 @@
 <template>
+        <Head title=" | Contact Me" />
     <div>
         contact me
     </div>

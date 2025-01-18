@@ -1,5 +1,9 @@
 <template>
-    <h1>hellasdasdasdaso</h1>
+
+    <Head title=" | Blog" />
+    <div class="text-black text-center py-2">
+        <h1></h1>
+    </div>
 </template>
 
 <script setup>
