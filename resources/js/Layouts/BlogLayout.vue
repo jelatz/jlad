@@ -1,7 +1,7 @@
 <template>
     <div class="blog-layout">
         <header class="py-4">
-            <img :src="Logo" alt="" class="w-60 mx-auto" />
+            <img :src="Logo" alt="" class="w-1/6 mx-auto" />
             <nav class="mt-8">
                 <ul class="flex items-center space-x-10 text-black text-center justify-center">
                     <li>
@@ -16,6 +16,9 @@
                     </li>
                     <li>
                         <Link :href="route('contact-me')"> Contact Me </Link>
+                    </li>
+                    <li>
+                        <Link :href="route('newsletter')"> Newsletter </Link>
                     </li>
                 </ul>
             </nav>
