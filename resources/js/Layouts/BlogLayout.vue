@@ -10,9 +10,11 @@
                     <li>
                         <Link :href="route('about')">About Me</Link>
                     </li>
-                    <li class="relative">
-                        <button @click.stop="showDropdown">Blogs</button>
-                        <DropdownMenu v-if="isDropdownVisible" />
+                    <li class="relative" @mouseenter="showDropdown" @mouseleave="hideDropdown">
+                        <button class="blog-button">
+                            Blogs
+                        </button>
+                        <DropdownMenu v-if="isDropdownVisible" @mouseenter="showDropdown" @mouseleave="hideDropdown" />
                     </li>
                     <li>
                         <Link :href="route('contact-me')"> Contact Me </Link>
@@ -32,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref } from "vue";
 // import Hero from "@/Components/Hero.vue";
 import DropdownMenu from "@/Components/DropdownMenu.vue";
 const Logo = ref("/images/logo.jpeg");
@@ -40,26 +42,29 @@ const Logo = ref("/images/logo.jpeg");
 const isDropdownVisible = ref(false);
 
 const showDropdown = () => {
-    isDropdownVisible.value = !isDropdownVisible.value;
+    isDropdownVisible.value = true;
 };
 
-const handleClickOutside = (event) => {
-    if (isDropdownVisible.value) {
-        isDropdownVisible.value = false;
-    }
+const hideDropdown = () => {
+    isDropdownVisible.value = false;
 };
-
-onMounted(() => {
-    $(document).on("click", handleClickOutside);
-});
-onBeforeUnmount(() => {
-    $(document).off("click", handleClickOutside);
-});
 </script>
 
 <style scoped>
 .blog-layout {
     background-color: white;
     min-height: 100vh;
+}
+
+a,
+button {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+a:hover,
+button:hover {
+    background-color: #222831;
+    color: white;
 }
 </style>

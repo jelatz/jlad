@@ -1,6 +1,6 @@
 <template>
-    <div class="text-black">
-        <h1>hey</h1>
+    <div class="text-black py-2 w-11/12 mx-auto">
+        hey
     </div>
 </template>
 
