@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full h-[30rem] bg-red-900 relative">
-        <img :src="data.img" :alt="data.alt" class="w-full">
+    <div class="w-full h-full bg-red-900 relative">
+        <img :src="data.img" :alt="data.alt">
         <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2">
             <h2 :class="data.titleStyle">{{ data.innerHeroTitle }}</h2>
             <p :class="data.descriptionStyle">{{ data.innerHeroDescription }}</p>
