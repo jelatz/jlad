@@ -17,7 +17,7 @@
                         <DropdownMenu v-if="isDropdownVisible" @mouseenter="showDropdown" @mouseleave="hideDropdown" />
                     </li>
                     <li>
-                        <Link :href="route('contact-me')"> Contact Me </Link>
+                        <Link :href="route('home')"> Contact Me </Link>
                     </li>
                     <li>
                         <Link :href="route('newsletter')"> Newsletter </Link>
