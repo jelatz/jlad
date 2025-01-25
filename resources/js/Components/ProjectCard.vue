@@ -36,7 +36,7 @@
                 <div class="flex space-x-3 mt-2 items-center">
                     <i v-for="(stack, index) in data.stacks" :key="index" :class="stack"
                         class="text-2xl text-[#00adb5]"></i>
-                    <img :src="mysqlImg" alt="mysql" v-if="data.isMysql" class="w-[27px] h-[25px] text-[#00adb5]">
+                    <img :src="mysqlImg" alt="mysql" v-if="data.isMysql" class="w-[30px] h-full text-[#00adb5]">
                 </div>
             </div>
         </template>

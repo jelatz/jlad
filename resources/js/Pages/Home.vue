@@ -1,7 +1,7 @@
 <template>
 
     <Head title=" | Portfolio" />
-    <div class="flex justify-center items-center mt-48 flex-col px-5">
+    <div class="flex justify-center items-center mt-48 flex-col px-5 text-white">
         <h1 class="text-9xl uppercase font-bold text-[#00adb5] text-center">Jlad Lanete</h1>
         <div class="mt-5">
             <span class="text-6xl font-normal">{{ displayedText }}</span>

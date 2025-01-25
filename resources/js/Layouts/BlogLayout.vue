@@ -30,6 +30,15 @@
         <main>
             <slot />
         </main>
+        <footer class="flex justify-between p-5">
+            <p class="text-center">All rights reserved <span class="font-bold">Jlad Lanete 2024 &copy;</span></p>
+            <ul class="flex justify-center items-center space-x-5">
+                <li><i class="fa fa-brands fa-facebook"></i></li>
+                <li><i class="fa fa-brands fa-instagram"></i></li>
+                <li><i class="fa fa-brands fa-twitter"></i></li>
+                <li><i class="fa fa-brands fa-tiktok"></i></li>
+            </ul>
+        </footer>
     </div>
 </template>
 

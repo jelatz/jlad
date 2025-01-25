@@ -1,14 +1,14 @@
 <template>
 
     <Head title=" | Projects" />
-    <div class="flex items-center justify-center w-fit px-5 py-1 bg-[#353b44] rounded-full ml-5">
+    <div class="flex items-center justify-center w-fit px-5 py-1 bg-[#353b44] rounded-full ml-5 text-white">
         <Link :href="route('home')">
         <i class="fa-solid fa-arrow-left"></i>
         <span class="ml-2">Back Home</span>
         </Link>
     </div>
 
-    <div class="mt-10 container">
+    <div class="mt-10 container text-white">
         <h1 class="text-center text-7xl font-bold">My work</h1>
         <div class="mt-10 flex justify-between items-center flex-col space-y-28">
             <ProjectCard v-for="(project, index) in projects" :key="index" :data="project" />
