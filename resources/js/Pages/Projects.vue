@@ -35,7 +35,7 @@ const projects = ref([
         img: '/images/projects/dashboard.png',
         alt: 'Healteeth',
         title: 'Healteeth',
-        description: 'Healteeth is a web application that helps dental clinics manage their patients and appointments. It allows patients to easily book appointments online, and enables the clinic to efficiently manage their schedules.',
+        description: 'Healteeth is a web application that helps dental clinics manage their patients and appointments. It allows patients to easily book appointments online, and enables the clinic to efficiently manage their schedules. This is just a practice project for me to be more familiarize with PHP',
         github: 'https://github.com/jelatz/healteeth',
         hasGithub: true,
         opposite: true,
