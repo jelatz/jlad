@@ -14,7 +14,21 @@
                         <button class="blog-button">
                             Blogs
                         </button>
-                        <DropdownMenu v-if="isDropdownVisible" @mouseenter="showDropdown" @mouseleave="hideDropdown" />
+                        <div class="absolute left-1/2 -translate-x-1/2 rounded-md border border-black shadow-lg w-36 bg-slate-50 bg-opacity-60 z-50"
+                            v-if="isDropdownVisible" @mouseenter="showDropdown" @mouseleave="hideDropdown">
+                            <ul class="flex flex-col items-stretch justify-stretch">
+                                <li>
+                                    <Link :href="route('lifestyle')" class="block w-full">
+                                    Lifestyle
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('travel')" class="block w-full">
+                                    Travel
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <Link :href="route('home')"> Contact Me </Link>
@@ -45,7 +59,6 @@
 <script setup>
 import { ref } from "vue";
 // import Hero from "@/Components/Hero.vue";
-import DropdownMenu from "@/Components/DropdownMenu.vue";
 const Logo = ref("/images/logo.jpeg");
 
 const isDropdownVisible = ref(false);

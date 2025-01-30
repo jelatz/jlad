@@ -2,15 +2,18 @@
 
     <Head title=" | Blog" />
     <!-- container -->
-    <div class="text-black py-2 w-11/12 mx-auto">
-        <h1 class="mb-3 text-md">Recent Posts</h1>
-        <div class="flex items-center space-x-5">
-            <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
+    <div class="text-black py-2 mx-auto">
+        <div class="container">
+            <h1 class="mb-3 text-md">Recent Posts</h1>
+            <div class="flex items-center space-x-5">
+                <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
+            </div>
         </div>
 
         <!-- SUMMARY ABOUT ME -->
         <div class="mt-20">
-            <div class="w-full h-[40rem] bg-red-300"></div>
+            <Hero :data="heroData" />
+            <!-- <div class="w-full h-[40rem] bg-red-300"></div> -->
 
             <div class="container mt-10 w-[40rem]">
                 <h5 class="mb-3">Hey There!</h5>
@@ -51,7 +54,9 @@
                     </div>
                 </div>
             </div>
-            <Newsletter />
+            <div class="container">
+                <Newsletter />
+            </div>
         </div>
     </div>
 </template>
@@ -60,8 +65,11 @@
 import { ref } from 'vue';
 import BlogLayout from '@/Layouts/BlogLayout.vue';
 import BlogCard from '@/Components/BlogCard.vue';
+import Hero from '@/Components/Hero.vue';
 import Newsletter from '@/Components/Newsletter.vue'
 defineOptions({ layout: BlogLayout });
+
+
 
 const socMed = ref([
     "/images/facebook.svg",
@@ -120,6 +128,16 @@ const lifeStyle = ref([
 
     }
 ])
+
+const heroData = ref({
+    img: '',
+    alt: 'hero image',
+    innerHeroTitle: 'Welcome to my blog',
+    innerHeroDescription: 'A blog about my journey as a software engineer',
+    titleStyle: 'text-4xl text-white',
+    descriptionStyle: 'text-white',
+    heroClass: 'mx-auto w-full h-[35rem] bg-red-800'
+})
 </script>
 
 <style lang="scss" scoped></style>

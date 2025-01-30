@@ -2,7 +2,7 @@
     <div class="text-black py-2 w-[55rem] mx-auto my-16">
         <h1 class="text-5xl text-center">Who Am I?</h1>
         <img :src="ownImg" alt="jlad profile picture" class="w-[40rem] mx-auto my-8 rounded-lg">
-        <h3 class="text-2xl">Hey There!</h3>
+        <h3 class="text-2xl mt-20">Hey There!</h3>
         <p class="my-6">You can call me Jay. I'm a late bloomer in the world of software engineering, but better late
             than never, right? My journey into tech started back in 2019 when I was working as a virtual assistant. It
             was during that time that I met some incredible software engineers from Davao City, and I couldn’t help but

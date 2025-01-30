@@ -1,6 +1,6 @@
 <template>
     <div class="mt-16">
-        <div class="w-[50rem] mx-auto">
+        <div class="w-[50rem]">
             <h3 class="text-4xl">Join My Newsletter!</h3>
             <p class="mt-5">Why Subscribe, You Ask?</p>
             <ul class="list-disc ml-5 mt-3">

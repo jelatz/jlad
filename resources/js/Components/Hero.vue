@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full bg-red-900 relative">
+    <div :class="data.heroClass" class="relative">
         <img :src="data.img" :alt="data.alt">
         <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2">
             <h2 :class="data.titleStyle">{{ data.innerHeroTitle }}</h2>
@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { ref, defineProps } from 'vue'
 
 defineProps({
     data: {
