@@ -1,6 +1,6 @@
 <template>
     <div class="mt-16">
-        <div class="w-[50rem]">
+        <div class="w-[50rem] mx-auto">
             <h3 class="text-4xl">Join My Newsletter!</h3>
             <p class="mt-5">Why Subscribe, You Ask?</p>
             <ul class="list-disc ml-5 mt-3">
@@ -18,7 +18,7 @@
             <p class="font-bold mt-3">Join the community today!</p>
 
             <div class="mt-10 w-[40rem] flex items-center justify-center flex-col bg-slate-100 rounded-lg mx-auto">
-                <img src="" alt="img">
+                <img src="" alt="img" class="mx-auto block">
                 <h1 class="my-5 text-xl">Add your email below!</h1>
                 <form action="" class="mb-5 text-center flex flex-col items-center">
                     <input type="email" class="border p-2 w-80 mb-4" placeholder="Enter your email">

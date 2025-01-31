@@ -5,7 +5,7 @@
             <nav class="mt-8">
                 <ul class="flex items-center space-x-10 text-black text-center justify-center">
                     <li>
-                        <Link :href="route('blog')">Home </Link>
+                        <Link :href="route('blogs')">Home </Link>
                     </li>
                     <li>
                         <Link :href="route('about')">About Me</Link>

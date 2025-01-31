@@ -1,6 +1,6 @@
 <template>
 
-    <Head title=" | Blog" />
+    <Head title=" | Blogs" />
     <!-- container -->
     <div class="text-black py-2 mx-auto">
         <div class="container">
