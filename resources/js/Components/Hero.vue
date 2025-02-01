@@ -1,7 +1,8 @@
 <template>
     <div :class="data.heroClass" class="relative">
         <img :src="data.img" :alt="data.alt">
-        <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2">
+        <div
+            class="absolute left-1/2 top-1/2 md:left-1/4 -translate-x-1/2 -translate-y-1/2 w-full px-2 md:w-fit md:px-0">
             <h2 :class="data.titleStyle">{{ data.innerHeroTitle }}</h2>
             <p :class="data.descriptionStyle">{{ data.innerHeroDescription }}</p>
         </div>

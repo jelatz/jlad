@@ -3,7 +3,7 @@
     <Head title=" | Blogs" />
     <!-- container -->
     <div class="text-black py-2 mx-auto">
-        <div class="container">
+        <div class="container px-5">
             <h1 class="mb-3 text-md">Recent Posts</h1>
             <div class="flex items-center space-x-5">
                 <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
@@ -15,7 +15,7 @@
             <Hero :data="heroData" />
             <!-- <div class="w-full h-[40rem] bg-red-300"></div> -->
 
-            <div class="container mt-10 w-[40rem]">
+            <div class="container mt-10 w-full md:w-[40rem] px-3 md:px-0">
                 <h5 class="mb-3">Hey There!</h5>
                 <p class="mb-5">"You can call me Jay. I'm a late bloomer when it comes to software engineering. I
                     started my career back in 2019, working as a virtual assistant. Along the way, I met some amazing
@@ -41,21 +41,21 @@
 
             <!-- Blogs -->
             <div class="mt-10">
-                <div class="container">
+                <div class="container px-3">
                     <p>Lifestyle</p>
                     <div class="flex items-center space-x-5 mt-3">
                         <BlogCard v-for="(blog, index) in lifeStyle" :key="index" :data="blog" />
                     </div>
                 </div>
-                <div class="container mt-10">
+                <div class="container mt-10 px-3">
                     <p>Travels</p>
                     <div class="flex items-center space-x-5 mt-3">
                         <BlogCard v-for="(blog, index) in travelBlog" :key="index" :data="blog" />
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <Newsletter />
+            <div class="container px-4">
+                <Newsletter class="" />
             </div>
         </div>
     </div>
@@ -135,7 +135,7 @@ const heroData = ref({
     innerHeroTitle: 'Welcome to my blog',
     innerHeroDescription: 'A blog about my journey as a software engineer',
     titleStyle: 'text-4xl text-white',
-    descriptionStyle: 'text-white',
+    descriptionStyle: 'text-white mt-5',
     heroClass: 'mx-auto w-full h-[35rem] bg-red-800'
 })
 </script>

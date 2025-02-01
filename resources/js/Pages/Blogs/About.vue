@@ -1,5 +1,5 @@
 <template>
-    <div class="text-black py-2 w-[55rem] mx-auto my-16">
+    <div class="text-black py-2 w-full px-10 md:px-0 md:w-[55rem] mx-auto my-16">
         <h1 class="text-5xl text-center">Who Am I?</h1>
         <img :src="ownImg" alt="jlad profile picture" class="w-[40rem] mx-auto my-8 rounded-lg">
         <h3 class="text-2xl mt-20">Hey There!</h3>

@@ -1,11 +1,11 @@
 <template>
-    <header class="p-10 sticky top-0 w-100 text-white">
-        <nav class="flex justify-between items-center w-100">
-            <div class="contact flex space-x-5">
-                <a href="mailto:lanetejlad@gmail.com" class="text-lg">lanetejlad@gmail.com</a>
-                <a href="tel:+639760275569" class="text-lg">09760275569</a>
+    <header class="md:p-10 p-2 sticky top-0 w-full text-white">
+        <nav class="flex flex-col md:flex-row justify-between items-center w-full">
+            <div class="contact flex-col justify-center md:flex-row space-x-5">
+                <a href="mailto:lanetejlad@gmail.com" class="md:text-lg text-sm">lanetejlad@gmail.com</a>
+                <a href="tel:+639760275569" class="md:text-lg text-sm">09760275569</a>
             </div>
-            <div class="flex items-center space-x-28 socMed">
+            <div class="flex items-center md:space-x-20 space-x-10 mt-6 md:mt-0 socMed">
                 <Link :href="route('blogs')"><i class="fas fa-solid fa-blog text-xl"></i></Link>
                 <Link :href="route('projects')"><i class="fas fa-solid fa-briefcase text-xl"></i></Link> <a
                     href="https://www.linkedin.com/in/jladlanete/" target="_blank"><i
@@ -16,14 +16,14 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="w-full">
         <slot />
     </main>
     <!-- A LEFT ARROW IF CLICKED WILL OPEN A NEW COMPONENT -->
     <!-- <div class="fixed right-3 top-1/2 transform -translate-y-1/2">
         <i class="fa-duotone fa-solid fa-angles-left fa-fade fa-2xl"></i>
     </div> -->
-    <footer class="relative bottom-0 w-full py-2 mt-5 text-white">
+    <footer class="w-full py-2 mt-32 text-white">
         <p class="text-center">All rights reserved <span class="font-bold">Jlad Lanete 2024 &copy;</span></p>
     </footer>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="mt-16">
-        <div class="w-[50rem] mx-auto">
+        <div class="w-full md:w-[50rem] mx-auto px-10 md:px-0">
             <h3 class="text-4xl">Join My Newsletter!</h3>
             <p class="mt-5">Why Subscribe, You Ask?</p>
             <ul class="list-disc ml-5 mt-3">
@@ -17,12 +17,13 @@
             <p class="mt-3">So, what are you waiting for?</p>
             <p class="font-bold mt-3">Join the community today!</p>
 
-            <div class="mt-10 w-[40rem] flex items-center justify-center flex-col bg-slate-100 rounded-lg mx-auto">
+            <div
+                class="mt-10 w-full md:w-[40rem] flex items-center justify-center flex-col bg-slate-100 rounded-lg mx-auto">
                 <img src="" alt="img" class="mx-auto block">
                 <h1 class="my-5 text-xl">Add your email below!</h1>
                 <form action="" class="mb-5 text-center flex flex-col items-center">
-                    <input type="email" class="border p-2 w-80 mb-4" placeholder="Enter your email">
-                    <input type="submit" value="Subscribe" class="bg-gray-800 text-white p-2 w-80 rounded-lg">
+                    <input type="email" class="border p-2 w-full md:w-80 mb-4" placeholder="Enter your email">
+                    <input type="submit" value="Subscribe" class="bg-gray-800 text-white p-2 w-full md:w-80 rounded-lg">
                 </form>
             </div>
         </div>
