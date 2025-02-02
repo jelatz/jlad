@@ -1,6 +1,6 @@
 <template>
 
-    <Head title=" | Blogs" />
+    <Head :title="`| ${$page.component}`" />
     <!-- container -->
     <div class="text-black py-2 mx-auto">
         <div class="container px-5">

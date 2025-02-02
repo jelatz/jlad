@@ -1,6 +1,6 @@
 <template>
 
-    <Head title=" | LifeStyle" />
+    <Head :title="`| ${$page.component}`" />
     <Hero :data="heroData" />
 
     <div class="pt-10">

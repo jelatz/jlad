@@ -1,7 +1,8 @@
 <template>
     <div class="blog-layout" @click="handleClickOutside">
         <header class="py-4 flex justify-between items-center px-5 md:flex-col">
-            <Link :href="route('blogs')" class="logo"><img :src="Logo" :alt="alt" class="w-1/6 md:mx-auto" /></Link>
+            <Link :href="route('blogs')" class="logo"><img :src="Logo" :alt="alt" class="w-1/6 md:w-52 md:mx-auto" />
+            </Link>
             <button class="hamburger md:hidden" @click.stop="toggleMobileNav">
                 <i class="fa fa-bars"></i>
             </button>
