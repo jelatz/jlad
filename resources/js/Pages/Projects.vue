@@ -1,7 +1,7 @@
 <template>
 
     <Head :title="`| ${$page.component}`" />
-    <h1>{{ $page.component }}</h1>
+
     <div class="flex items-center justify-center w-fit px-5 py-1 bg-[#353b44] rounded-full ml-5 text-white">
         <Link :href="route('home')">
         <i class="fa-solid fa-arrow-left"></i>
