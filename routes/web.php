@@ -20,5 +20,4 @@ Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter')
 Route::inertia('/wanderladz/lifestyle', 'Blogs/Lifestyle')->name('lifestyle');
 Route::inertia('/wanderladz/travel', 'Blogs/Travel')->name('travel');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
-Route::inertia('/wanderladz/{id}', 'Blogs/Blog')->name('blog');
 Route::inertia('wanderladz/admin', 'Blogs/Admin')->name('admin');
