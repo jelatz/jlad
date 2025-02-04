@@ -1,5 +1,6 @@
 <template>
     <div class="container mt-10">
+        <!-- Category Buttons -->
         <ul class="flex justify-center items-center space-x-5">
             <li>
                 <button class="glass-button">Lifestyle</button>
@@ -9,21 +10,50 @@
             </li>
         </ul>
 
+        <!-- Blog Cards -->
         <div class="flex items-center space-x-5 mt-14">
             <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
         </div>
 
+        <!-- Add Blog Button -->
         <div class="my-10">
-            <button class="glass-button ml-auto block">Add Blog</button>
+            <button class="glass-button ml-auto block" @click="OpenModal">Add Blog</button>
         </div>
+
+        <!-- Modal -->
+        <Modal :show="isOpen" @closeModal="closeModal">
+            <h1 class="text-xl font-bold">Create a New Blog</h1>
+            <form @submit.prevent="form.post('/addBlog')">
+                <TextInput :forName="title" :label="Title" :type="text" :id="title" name="title"
+                    :errorMessage="sample" />
+            </form>
+        </Modal>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+// import { useForm } from '@inertiajs/inertia-vue3';
+import TextInput from '@/Components/TextInput.vue';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import Modal from '@/Components/Modal.vue';
 import BlogCard from '../../Components/BlogCard.vue';
+
 defineOptions({ layout: AdminLayout });
+
+// const form = useForm({
+//     title: null,
+//     content: null,
+// })
+
+// const submit = () =>{
+//     form.post('/addBlog');
+// }
+const isOpen = ref(false); // Modal state
+
+// Open & Close Modal Functions
+const OpenModal = () => { isOpen.value = true; };
+const closeModal = () => { isOpen.value = false; };
 
 const blogs = ref([
     {
@@ -40,8 +70,7 @@ const blogs = ref([
         author: 'Jlad Lanete',
         date: 'Sept 20 2024'
     }
-])
-
+]);
 </script>
 
 <style scoped>
