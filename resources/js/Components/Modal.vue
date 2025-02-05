@@ -4,7 +4,8 @@
         <div class="fixed inset-0 bg-black opacity-50" @click="emit('closeModal')"></div>
 
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-[70rem] sm:w-full">
+        <div
+            class="bg-white rounded-lg shadow-xl transform transition-all sm:max-w-[110rem] sm:w-[100rem] max-h-[80vh] overflow-auto">
             <div class="px-4 py-5 sm:p-6">
                 <slot></slot> <!-- Injected content from parent -->
             </div>

@@ -22,10 +22,14 @@
 
         <!-- Modal -->
         <Modal :show="isOpen" @closeModal="closeModal">
-            <h1 class="text-xl font-bold">Create a New Blog</h1>
-            <form @submit.prevent="form.post('/addBlog')">
-                <TextInput :forName="title" :label="Title" :type="text" :id="title" name="title"
-                    :errorMessage="sample" />
+            <h1 class="text-2xl font-bold">Create a New Blog</h1>
+            <form @submit.prevent="console.log(form)">
+                <ImageUpload />
+                <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
+                    type="text" />
+                <Textarea forName="content" inputLabel="Content" v-model="form.content"
+                    :errorMessage="form.errors.content" cols="20" rows="20" />
+                <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block">Add Blog</button>
             </form>
         </Modal>
     </div>
@@ -33,22 +37,21 @@
 
 <script setup>
 import { ref } from 'vue';
-// import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
+import Textarea from '@/Components/Textarea.vue';
+import ImageUpload from '@/Components/ImageUpload.vue';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Modal from '@/Components/Modal.vue';
 import BlogCard from '../../Components/BlogCard.vue';
 
 defineOptions({ layout: AdminLayout });
 
-// const form = useForm({
-//     title: null,
-//     content: null,
-// })
+const form = useForm({
+    title: null,
+    content: null,
+})
 
-// const submit = () =>{
-//     form.post('/addBlog');
-// }
 const isOpen = ref(false); // Modal state
 
 // Open & Close Modal Functions

@@ -1,16 +1,15 @@
 <template>
     <div class="my-5">
-        <label :for="forName">{{ label }}</label>
-        <input :type="type" :id="id" class="w-full p-2 border border-gray-300 rounded-md" v-model="model">
+        <label :for="forName" class="text-2xl mb-10">{{ inputLabel }}</label>
+        <input type="text" class="w-full p-2 border border-gray-300 rounded-md" v-model="model">
         <small class="bg-red-600" v-if="errorMessage">{{ errorMessage }}</small>
     </div>
 </template>
 
 
 <script setup>
-import { type } from 'jquery';
 const model = defineModel({
-    type: String,
+    type: null,
     required: true
 })
 defineProps({
@@ -18,15 +17,11 @@ defineProps({
         type: String,
         required: true
     },
-    label: {
+    inputLabel: {
         type: String,
         required: true
     },
     type: {
-        type: String,
-        required: true
-    },
-    id: {
         type: String,
         required: true
     },
