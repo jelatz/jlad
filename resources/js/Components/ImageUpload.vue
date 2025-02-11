@@ -1,8 +1,8 @@
 <template>
-    <div class="relative w-fit mx-auto">
+    <div class="relative w-fit mx-auto" @mouseover="isHovered = true" @mouseleave="isHovered = false">
         <input type="file" @change="onFileChange" class="absolute inset-0 opacity-0 cursor-pointer w-full" />
-        <img :src="imageUrl" alt="Image preview" class="border w-fit" />
-        <div class="overlay-text">Upload Image</div>
+        <img :src="imageUrl" alt="Image preview" class="border w-96 rounded-lg" />
+        <div :class="['overlay-text', { 'hidden': !isHovered && imageUrl !== defaultImageUrl }]">Upload Image</div>
     </div>
 </template>
 
@@ -11,6 +11,7 @@ import { ref } from 'vue';
 
 const defaultImageUrl = '/images/img.jpeg'; // Set your default image path here
 const imageUrl = ref(defaultImageUrl);
+const isHovered = ref(false);
 
 const onFileChange = (event) => {
     const file = event.target.files[0];
@@ -46,6 +47,10 @@ const onFileChange = (event) => {
     padding: 10px;
     border-radius: 5px;
     pointer-events: none;
+}
+
+.overlay-text.hidden {
+    display: none;
 }
 
 .overlay-text:hover {

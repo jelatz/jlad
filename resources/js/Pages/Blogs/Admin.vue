@@ -1,14 +1,5 @@
 <template>
-    <div class="container mt-10">
-        <!-- Category Buttons -->
-        <ul class="flex justify-center items-center space-x-5">
-            <li>
-                <button class="glass-button">Lifestyle</button>
-            </li>
-            <li>
-                <button class="glass-button">Travel</button>
-            </li>
-        </ul>
+    <div class="container mt-10 px-10">
 
         <!-- Blog Cards -->
         <div class="flex items-center space-x-5 mt-14">
@@ -23,12 +14,12 @@
         <!-- Modal -->
         <Modal :show="isOpen" @closeModal="closeModal">
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
-            <form @submit.prevent="console.log(form)">
+            <form @submit.prevent="form.post(route('addBlog'))">
                 <ImageUpload />
                 <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
                     type="text" />
-                <Textarea forName="content" inputLabel="Content" v-model="form.content"
-                    :errorMessage="form.errors.content" cols="20" rows="20" />
+                <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
+                    :errorMessage="form.errors.content" />
                 <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block">Add Blog</button>
             </form>
         </Modal>
@@ -39,18 +30,19 @@
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
-import Textarea from '@/Components/Textarea.vue';
+import RichTextEditor from '@/Components/RichTextEditor.vue';
 import ImageUpload from '@/Components/ImageUpload.vue';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Modal from '@/Components/Modal.vue';
-import BlogCard from '../../Components/BlogCard.vue';
+import BlogCard from '@/Components/BlogCard.vue';
+import { route } from 'ziggy-js';
 
 defineOptions({ layout: AdminLayout });
 
 const form = useForm({
-    title: null,
-    content: null,
-})
+    title: '',
+    content: '',
+});
 
 const isOpen = ref(false); // Modal state
 
@@ -78,9 +70,9 @@ const blogs = ref([
 
 <style scoped>
 .glass-button {
-    padding: 0.20rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);

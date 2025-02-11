@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,4 +21,4 @@ Route::inertia('/wanderladz/travel', 'Blogs/Travel')->name('travel');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
 Route::inertia('wanderladz/admin', 'Blogs/Admin')->name('admin');
 
-Route::post('addBlog', 'BlogController@store')->name('addBlog');
+Route::post('/addBlog', [BlogController::class, 'create'])->name('addBlog');
