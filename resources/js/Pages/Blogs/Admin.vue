@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-10 px-10">
-
+        <!--  -->
         <!-- Blog Cards -->
         <div class="flex items-center space-x-5 mt-14">
             <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />

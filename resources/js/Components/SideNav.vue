@@ -6,9 +6,8 @@
         <div>
             <ul class="flex flex-col items-stretch nav">
                 <li>
-                    <Link>Dashboard</Link>
+                    <Link :route="route('admin')">Blogs</Link>
                 </li>
-                <li><Link>Blogs</Link></li>
                 <li>
                     <Link :href="route('blogs')">Back to blog page</Link>
                 </li>
