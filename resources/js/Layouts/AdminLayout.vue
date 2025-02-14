@@ -1,7 +1,7 @@
 <template>
     <div class="admin-layout flex">
         <SideNav />
-        <main>
+        <main class="w-full">
             <slot />
         </main>
         <!-- <footer class="w-full absolute bottom-0 py-2 mt-32 ">

@@ -10,7 +10,7 @@
     @routes
 </head>
 
-<body class="font-lexend bg-[#222831] min-h-screen antialiased">
+<body class="font-lexend bg-[#222831] min-h-screen antialiased relative">
     @inertia
 
 </body>

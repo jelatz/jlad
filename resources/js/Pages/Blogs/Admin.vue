@@ -14,13 +14,14 @@
         <!-- Modal -->
         <Modal :show="isOpen" @closeModal="closeModal">
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
-            <form @submit.prevent="form.post(route('addBlog'))">
+            <form @submit.prevent="submitForm">
                 <ImageUpload />
                 <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
                     type="text" />
                 <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
                     :errorMessage="form.errors.content" />
-                <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block">Add Blog</button>
+                <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block"
+                    :disabled="form.processing">Add Blog</button>
             </form>
         </Modal>
     </div>
@@ -43,6 +44,17 @@ const form = useForm({
     title: '',
     content: '',
 });
+
+const submitForm = () => {
+    form.post(route('addBlog'), {
+        onError: (errors) => {
+            console.log('Form submission errors:', errors);
+        },
+        onSuccess: () => {
+            closeModal();
+        }
+    });
+};
 
 const isOpen = ref(false); // Modal state
 

@@ -8,7 +8,7 @@ use App\Http\Controllers\BlogController;
 // Route::get('/', function () {
 //     return Inertia::render('Home');
 // });
-// sleep(1);
+sleep(1);
 Route::inertia('/', 'Home')->name('home');
 Route::inertia('/projects', 'Projects')->name('projects');
 // Blogs route
@@ -20,5 +20,7 @@ Route::inertia('/wanderladz/lifestyle', 'Blogs/Lifestyle')->name('lifestyle');
 Route::inertia('/wanderladz/travel', 'Blogs/Travel')->name('travel');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
 Route::inertia('wanderladz/admin', 'Blogs/Admin')->name('admin');
+Route::inertia('/wanderladz/admin/dashboard', 'Blogs/Dashboard')->name('dashboard');
 
-Route::post('/addBlog', [BlogController::class, 'create'])->name('addBlog');
+
+Route::post('/wanderladz/addBlog', [BlogController::class, 'create'])->name('addBlog');

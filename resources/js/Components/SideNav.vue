@@ -6,7 +6,10 @@
         <div>
             <ul class="flex flex-col items-stretch nav">
                 <li>
-                    <Link :route="route('admin')">Blogs</Link>
+                    <Link :href="route('dashboard')">Dashboard</Link>
+                </li>
+                <li>
+                    <Link :href="route('admin')">Blogs</Link>
                 </li>
                 <li>
                     <Link :href="route('blogs')">Back to blog page</Link>

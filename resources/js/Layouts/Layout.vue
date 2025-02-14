@@ -1,5 +1,5 @@
 <template>
-    <header class="md:p-10 p-2 sticky top-0 w-full text-white">
+    <header :class="isScrolled" class="md:p-10 p-2 sticky top-0 w-full text-white">
         <nav class="flex flex-col md:flex-row justify-between items-center w-full">
             <div class="contact flex-col justify-center md:flex-row space-x-5">
                 <a href="mailto:lanetejlad@gmail.com" class="md:text-lg text-sm">lanetejlad@gmail.com</a>
@@ -29,9 +29,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const year = ref(new Date().getFullYear());
+const isScrolled = ref(false);
+
+onMounted(() => {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            isScrolled.value = 'bg-gray-900';
+        } else {
+            isScrolled.value = '';
+        }
+    });
+});
 </script>
 
 <style scoped>

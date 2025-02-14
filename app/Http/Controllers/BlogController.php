@@ -8,6 +8,9 @@ class BlogController extends Controller
 {
     public function create(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
     }
 }
