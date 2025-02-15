@@ -1,9 +1,12 @@
 <template>
-    <div class="p-10 flex items-center justify-evenly w-full">
-        <Card class="bg-blue-700 text-white" :cardTitle="totalBlogs" :count="totalBlogCount"/>
-        <Card class="bg-blue-800 text-white" :cardTitle="totalBlogs" :count="totalBlogCount"/>
-        <Card class="bg-blue-950 text-white" :cardTitle="totalBlogs" :count="totalBlogCount"/>
-        <Card class="bg-blue-900 text-white" :cardTitle="totalBlogs" :count="totalBlogCount"/>
+    <div>
+
+        <div class="p-10 flex items-center justify-evenly w-full">
+            <Card class="bg-blue-700 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
+            <Card class="bg-blue-800 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
+            <Card class="bg-blue-950 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
+            <Card class="bg-blue-900 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
+        </div>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen w-60 shadow-lg">
-        <Link :href="route('admin')"><img :src="Logo" :alt="alt" class="w-32 md:mx-auto" />
+    <div @click="" class="min-h-screen w-60 shadow-lg overflow-hidden">
+        <Link :href="route('admin')"><img :src="Logo" :alt="alt" class="w-32 md:mx-auto h-32" />
         </Link>
 
         <div>
@@ -30,4 +30,8 @@ const Logo = ref("/images/logoold.png");
 <style scoped>
 .nav a {padding: 10px 10px;width: 100%; display: block;}
 .nav a:hover{background-color: #222831; color: #fff;}
+.nav li {
+    overflow: hidden;
+    text-wrap: nowrap;
+}
 </style>
