@@ -4,7 +4,7 @@
     <!-- container -->
     <div class="text-black py-2 mx-auto">
         <div class="container px-5">
-            <h1 class="mb-3 text-md">Recent Posts</h1>
+            <h1 class="mb-3 text-sm">Recent Posts</h1>
             <div class="flex items-center space-x-5">
                 <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
             </div>

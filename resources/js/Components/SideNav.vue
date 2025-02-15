@@ -14,6 +14,9 @@
                 <li>
                     <Link :href="route('blogs')">Back to blog page</Link>
                 </li>
+                <!-- <li>
+                    <Link :href="route('topics')">Topics</Link>
+                </li> -->
             </ul>
         </div>
     </div>
