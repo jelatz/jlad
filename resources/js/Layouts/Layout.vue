@@ -1,7 +1,7 @@
 <template>
     <header :class="isScrolled" class="md:p-10 p-2 sticky top-0 w-full text-white">
         <nav class="flex flex-col md:flex-row justify-between items-center w-full">
-            <div class="contact flex-col justify-center md:flex-row space-x-5">
+            <div class="contact flex-col justify-center md:flex-row space-x-5 relative">
                 <a href="mailto:lanetejlad@gmail.com" class="md:text-lg text-sm">lanetejlad@gmail.com</a>
                 <a href="tel:+639760275569" class="md:text-lg text-sm">09760275569</a>
             </div>
@@ -16,14 +16,14 @@
             </div>
         </nav>
     </header>
-    <main class="w-full min-h-full">
+    <main class="w-full h-full">
         <slot />
     </main>
     <!-- A LEFT ARROW IF CLICKED WILL OPEN A NEW COMPONENT -->
     <!-- <div class="fixed right-3 top-1/2 transform -translate-y-1/2">
         <i class="fa-duotone fa-solid fa-angles-left fa-fade fa-2xl"></i>
     </div> -->
-    <footer class="w-full absolute bottom-0 py-2 mt-32 text-white">
+    <footer class="w-full absolute bottom-0 text-white py-5">
         <p class="text-center">All rights reserved <span class="font-bold">Jlad Lanete 2024 &copy;</span></p>
     </footer>
 </template>
@@ -46,6 +46,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
+.header-background {
+    background-color: rgba(0, 0, 0, 0.8);
+}
 .contact {
     position: relative;
 }
