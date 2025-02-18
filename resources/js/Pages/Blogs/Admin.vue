@@ -16,10 +16,14 @@
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
             <form @submit.prevent="submitForm">
                 <!-- <ImageUpload /> -->
-                <div>
-                    <label for="blogImage">Blog Image</label>
-                    <input type="file" id="blogImage" @input="onFileChange" />
-                </div>
+                 <div class="grid place-items-center">
+                     <div class="relative w-64 h-56 rounded-lg overflow-hidden border border-slate-300">
+                         <label for="blogImage" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid content-end cursor-pointer">Blog Image</label>
+                         <input type="file" id="blogImage" @input="onFileChange" hidden/>
+                         <img :src="defaultImage" alt=""class="object-cover w-full h-full">
+                        </div>
+                        <p>{{ form.errors.image }}</p>
+                    </div>
                 <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
                     type="text" />
                 <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
@@ -44,6 +48,7 @@ import { route } from 'ziggy-js';
 
 defineOptions({ layout: AdminLayout });
 
+const defaultImage = '/images/img.jpeg';
 const onFileChange = (e) => {
     form.image = e.target.files[0];
 };
