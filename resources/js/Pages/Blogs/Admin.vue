@@ -15,7 +15,11 @@
         <Modal :show="isOpen" @closeModal="closeModal">
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
             <form @submit.prevent="submitForm">
-                <ImageUpload />
+                <!-- <ImageUpload /> -->
+                <div>
+                    <label for="blogImage">Blog Image</label>
+                    <input type="file" id="blogImage" @input="onFileChange" />
+                </div>
                 <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
                     type="text" />
                 <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
@@ -40,21 +44,42 @@ import { route } from 'ziggy-js';
 
 defineOptions({ layout: AdminLayout });
 
+const onFileChange = (e) => {
+    form.image = e.target.files[0];
+};
+
+
 const form = useForm({
     title: '',
     content: '',
+    image: null,
 });
 
 const submitForm = () => {
+    const formData = new FormData();
+    formData.append('title', form.title);
+    formData.append('content', form.content);
+
+    // If there's an image, append it to form data
+    if (form.image) {
+        formData.append('image', form.image);
+    }
+
+    // Use Inertia's post method with the FormData
     form.post(route('addBlog'), {
+        data: formData,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
         onError: (errors) => {
             console.log('Form submission errors:', errors);
         },
         onSuccess: () => {
             closeModal();
-        }
+        },
     });
 };
+
 
 const isOpen = ref(false); // Modal state
 

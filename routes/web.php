@@ -8,7 +8,7 @@ use App\Http\Controllers\BlogController;
 // Route::get('/', function () {
 //     return Inertia::render('Home');
 // });
-sleep(1);
+// sleep(1);
 Route::inertia('/', 'Home')->name('home');
 Route::inertia('/projects', 'Projects')->name('projects');
 // Blogs route

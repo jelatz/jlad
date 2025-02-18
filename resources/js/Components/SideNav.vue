@@ -6,10 +6,10 @@
         <div>
             <ul class="flex flex-col items-stretch nav">
                 <li>
-                    <Link :href="route('dashboard')">Dashboard</Link>
+                    <Link :href="route('dashboard')" :class="{'bg-[#222831] text-white' : $page.component === 'Blogs/Dashboard'}">Dashboard</Link>
                 </li>
                 <li>
-                    <Link :href="route('admin')">Blogs</Link>
+                    <Link :href="route('admin')":class="{'bg-[#222831] text-white' : $page.component === 'Blogs/Admin'}">Blogs</Link>
                 </li>
                 <li>
                     <Link :href="route('blogs')">Back to blog page</Link>
@@ -28,6 +28,7 @@ import { ref } from 'vue';
 
 const Logo = ref("/images/logoold.png");
 
+const alt = ref("Logo");
 </script>
 
 <style scoped>
