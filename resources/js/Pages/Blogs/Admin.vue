@@ -10,7 +10,7 @@
         <div class="my-10">
             <button class="glass-button ml-auto block" @click="OpenModal">Add Blog</button>
         </div>
-
+        <p>this is just a test</p>
         <!-- Modal -->
         <Modal :show="isOpen" @closeModal="closeModal">
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
