@@ -32,7 +32,7 @@ class BlogController extends Controller
 
     public function getAllBlog()
     {
-        $blogs = Blog::all(['title', 'content']);
+        $blogs = Blog::paginate(10);
         return Inertia::render('Blogs/Dashboard', ['blogs' => $blogs]);
     }
 }
