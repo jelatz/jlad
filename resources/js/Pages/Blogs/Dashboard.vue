@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="p-10 flex items-center justify-evenly w-full">
+        <div class="p-10 flex items-center justify-evenly w-full space-x-5">
             <Card class="bg-blue-700 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
             <Card class="bg-blue-800 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
             <Card class="bg-blue-950 text-white" :cardTitle="totalBlogs" :count="totalBlogCount" />
@@ -17,11 +17,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="hover:bg-gray-100">
+                    <tr class="hover:bg-gray-100" v-for="blog in blogs" :key="blog.id">
                         <td class="border px-4 py-1 text-left">
-                            Emilias First Trip
+                            {{blog.title}}
                         </td>
-                        <td class="border px-4 py-1 text-left">Travel</td>
+                        <td class="border px-4 py-1 text-left">{{blog.content}}</td>
                         <td class="border px-4 py-1 text-left flex space-x-2">
                             <i class="fa-solid fa-eye"></i>
                             <i class="fa-solid fa-pen-to-square"></i>
@@ -30,6 +30,8 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- pagination links -->
+             <div></div>
         </div>
 
         <!-- Add Blog Button -->
@@ -68,7 +70,7 @@ import ImageUpload from "@/Components/ImageUpload.vue";
 import Modal from "@/Components/Modal.vue";
 
 defineOptions({ layout: AdminLayout });
-
+defineProps({ blogs: Array });
 const form = useForm({
     title: "",
     content: "",

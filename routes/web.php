@@ -20,7 +20,7 @@ Route::inertia('/wanderladz/lifestyle', 'Blogs/Lifestyle')->name('lifestyle');
 Route::inertia('/wanderladz/travel', 'Blogs/Travel')->name('travel');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
 Route::inertia('wanderladz/admin', 'Blogs/Admin')->name('admin');
-Route::inertia('/wanderladz/admin/dashboard', 'Blogs/Dashboard')->name('dashboard');
+Route::get('/wanderladz/admin/dashboard', [BlogController::class, 'getAllBlog'])->name('dashboard');
 
 
 Route::post('/wanderladz/addBlog', [BlogController::class, 'create'])->name('addBlog');

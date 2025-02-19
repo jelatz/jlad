@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class BlogController extends Controller
 {
@@ -26,6 +27,12 @@ class BlogController extends Controller
         // Insert to database
         Blog::create($fields);
 
-        return redirect()->route('admin');
+        return redirect()->route('dashboard');
+    }
+
+    public function getAllBlog()
+    {
+        $blogs = Blog::all(['title', 'content']);
+        return Inertia::render('Blogs/Dashboard', ['blogs' => $blogs]);
     }
 }
