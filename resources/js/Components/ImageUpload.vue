@@ -1,58 +1,48 @@
 <template>
-    <div 
-        class="relative w-fit mx-auto overflow-hidden rounded-lg transition-all duration-300"
-        :class="{ 'bg-black bg-opacity-60': isHovered && imageUrl !== defaultImageUrl }"
-        @mouseover="isHovered = true" 
-        @mouseleave="isHovered = false"
-    >
-        <!-- File Input (Hidden) -->
-        <label class="absolute inset-0 cursor-pointer">
-            <input 
-                type="file" 
-                @change="onFileChange" 
-                class="hidden" 
-            />
+    <div class="grid place-items-center">
+      <div class="relative w-64 h-56 rounded-lg overflow-hidden border border-slate-300">
+        <label for="imageUpload" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid content-end cursor-pointer">
+          {{ label }}
         </label>
-
-        <!-- Image Display -->
-        <img 
-            :src="imageUrl" 
-            alt="Uploaded Image" 
-            class="border w-96 rounded-lg transition-opacity duration-300" 
-        />
-
-        <!-- Overlay with Upload Text -->
-        <div 
-            class="absolute inset-0 flex justify-center items-center transition-opacity duration-300 pointer-events-none"
-            :class="{
-                'opacity-100': imageUrl === defaultImageUrl || isHovered, 
-                'opacity-0': imageUrl !== defaultImageUrl && !isHovered
-            }"
-        >
-            <span class="text-white bg-black bg-opacity-50 px-4 py-2 rounded-md">Upload Image</span>
-        </div>
+        <input type="file" id="imageUpload" @change="onFileChange" hidden accept="image/*" />
+        <img :src="previewImage || defaultImage" alt="Preview" class="object-cover w-full h-full">
+      </div>
+      <p class="text-red-600" v-if="errorMessage">{{ errorMessage }}</p>
     </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const emit = defineEmits(['input']);
-
-const defaultImageUrl = '/images/img.jpeg'; 
-const imageUrl = ref(defaultImageUrl);
-const isHovered = ref(false);
-
-const onFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            imageUrl.value = e.target.result;
-            emit('input', file); // Emit the selected file to the parent
-        };
-        reader.readAsDataURL(file);
+  </template>
+  
+  <script setup>
+  import { ref, defineProps, defineEmits } from 'vue';
+  
+  const props = defineProps({
+    modelValue: File,
+    defaultImage: {
+      type: String,
+      default: '/images/img.jpeg',
+    },
+    errorMessage: String,
+    label: {
+      type: String,
+      default: 'Upload Image',
     }
-};
-
-</script>
+  });
+  
+  const emit = defineEmits(['update:modelValue']);
+  
+  const previewImage = ref(null);
+  
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      previewImage.value = URL.createObjectURL(file);
+      emit('update:modelValue', file);
+    }
+  };
+  </script>
+  
+  <style scoped>
+  input[type="file"] {
+    display: none;
+  }
+  </style>
+  

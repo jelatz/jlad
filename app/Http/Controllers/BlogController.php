@@ -26,6 +26,6 @@ class BlogController extends Controller
         // Insert to database
         Blog::create($fields);
 
-        return redirect()->route('admin')->with('success', 'Blog created successfully!');
+        return redirect()->route('admin');
     }
 }
