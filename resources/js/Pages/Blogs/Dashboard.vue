@@ -1,32 +1,14 @@
 <template>
     <div>
         <div class="p-10 flex items-center justify-evenly w-full space-x-5">
-            <Card
-                class="bg-blue-700 text-white"
-                cardTitle="Total Blogs"
-                :count="blogs.total"
-            />
-            <Card
-                class="bg-blue-800 text-white"
-                cardTitle="Featured Blogs"
-                :count="featuredBlogs"
-            />
-            <Card
-                class="bg-blue-950 text-white"
-                cardTitle="Active blogs"
-                :count="activeBlogs"
-            />
-            <Card
-                class="bg-blue-900 text-white"
-                cardTitle="Inactive Blogs"
-                :count="inactiveBlogs"
-            />
+            <Card class="bg-blue-700 text-white" cardTitle="Total Blogs" :count="blogs.total" />
+            <Card class="bg-blue-800 text-white" cardTitle="Featured Blogs" :count="featuredBlogs" />
+            <Card class="bg-blue-950 text-white" cardTitle="Active blogs" :count="activeBlogs" />
+            <Card class="bg-blue-900 text-white" cardTitle="Inactive Blogs" :count="inactiveBlogs" />
         </div>
 
         <div class="p-10">
-            <table
-                class="border min-w-full border-gray-300 border-collapse shadow-lg rounded-lg overflow-hidden"
-            >
+            <table class="border min-w-full border-gray-300 border-collapse shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-gray-200">
                     <tr>
                         <th class="border px-4 py-1 text-left">Title</th>
@@ -35,11 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        class="hover:bg-gray-100"
-                        v-for="blog in blogs.data"
-                        :key="blog.id"
-                    >
+                    <tr class="hover:bg-gray-100" v-for="blog in blogs.data" :key="blog.id">
                         <td class="border px-4 py-1 text-left">
                             {{ blog.title }}
                         </td>
@@ -47,7 +25,9 @@
                             {{ blog.content }}
                         </td>
                         <td class="border px-4 py-1 text-left flex space-x-2">
-                            <i class="fa-solid fa-eye"></i>
+                            <button @click="OpenModalView(blog)">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
                             <i class="fa-solid fa-pen-to-square"></i>
                             <i class="fa-solid fa-trash"></i>
                         </td>
@@ -61,17 +41,12 @@
                     {{ blogs.total }}
                 </p>
                 <div>
-                    <Link
-                        v-for="link in blogs.links"
-                        :key="link.label"
-                        v-html="link.label"
-                        :href="link.url"
-                        class="mx-1 px-1"
-                        :class="{
+                    <Link v-for="link in blogs.links" :key="link.label" v-html="link.label" :href="link.url ?? '#'"
+                        class="mx-1 px-1" :class="{
                             'text-slate-300': !link.url,
                             'text-blue-500': link.active,
-                        }"
-                    ></Link>
+}">
+                    </Link>
                 </div>
             </div>
         </div>
@@ -83,37 +58,29 @@
             </button>
         </div>
 
-        <!-- Modal -->
+        <!-- Add Blog Modal -->
         <Modal :show="isOpen" @closeModal="closeModal">
             <h1 class="text-2xl font-bold">Create a New Blog</h1>
             <form @submit.prevent="submitForm">
                 <ImageUpload />
-                <TextInput
-                    forName="title"
-                    inputLabel="Title"
-                    v-model="form.title"
-                    :errorMessage="form.errors.title"
-                    type="text"
-                />
-                <RichTextEditor
-                    forName="content"
-                    inputLabel="Content"
-                    v-model="form.content"
-                    :errorMessage="form.errors.content"
-                />
-                <button
-                    class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block"
-                    :disabled="form.processing"
-                >
+                <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
+                    type="text" />
+                <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
+                    :errorMessage="form.errors.content" />
+                <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block" :disabled="form.processing">
                     Add Blog
                 </button>
             </form>
+        </Modal>
+        <!-- View Blog Modal -->
+        <Modal :show="isOpenView" @closeModal="closeModalView">
+            <h1>{{ selectedBlog.title }}</h1>
         </Modal>
     </div>
 </template>
 
 <script setup>
-import { ref , computed} from "vue";
+import { ref, computed } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
@@ -158,6 +125,16 @@ const closeModal = () => {
     isOpen.value = false;
 };
 
+const isOpenView = ref(false); // Modal state
+const selectedBlog = ref(null); // Store the selected blog
+
+const OpenModalView = (blog) => {
+    selectedBlog.value = blog; // Assign the clicked blog
+    isOpenView.value = true;
+};
+const closeModalView = () => {
+    isOpenView.value = false;
+};
 </script>
 
 <style scoped>
