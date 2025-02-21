@@ -3,23 +3,23 @@
         <div class="p-10 flex items-center justify-evenly w-full space-x-5">
             <Card
                 class="bg-blue-700 text-white"
-                :cardTitle="totalBlogs"
-                :count="totalBlogCount"
+                cardTitle="Total Blogs"
+                :count="blogs.total"
             />
             <Card
                 class="bg-blue-800 text-white"
-                :cardTitle="totalBlogs"
-                :count="totalBlogCount"
+                cardTitle="Featured Blogs"
+                :count="featuredBlogs"
             />
             <Card
                 class="bg-blue-950 text-white"
-                :cardTitle="totalBlogs"
-                :count="totalBlogCount"
+                cardTitle="Active blogs"
+                :count="activeBlogs"
             />
             <Card
                 class="bg-blue-900 text-white"
-                :cardTitle="totalBlogs"
-                :count="totalBlogCount"
+                cardTitle="Inactive Blogs"
+                :count="inactiveBlogs"
             />
         </div>
 
@@ -113,7 +113,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref , computed} from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
@@ -124,7 +124,13 @@ import ImageUpload from "@/Components/ImageUpload.vue";
 import Modal from "@/Components/Modal.vue";
 
 defineOptions({ layout: AdminLayout });
-defineProps({ blogs: Object });
+const props = defineProps({
+    blogs: Object,
+    featuredBlogs: Number,
+    activeBlogs: Number,
+    inactiveBlogs: Number,
+});
+
 const form = useForm({
     title: "",
     content: "",
@@ -152,8 +158,6 @@ const closeModal = () => {
     isOpen.value = false;
 };
 
-const totalBlogs = ref("Total Blogs");
-const totalBlogCount = ref(5);
 </script>
 
 <style scoped>

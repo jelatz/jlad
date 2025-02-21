@@ -33,6 +33,14 @@ class BlogController extends Controller
     public function getAllBlog()
     {
         $blogs = Blog::paginate(10);
-        return Inertia::render('Blogs/Dashboard', ['blogs' => $blogs]);
+        $featuredBlogs = Blog::where('isFeatured', true)->count();
+        $activeBlogs = Blog::where('isActive', true)->count();
+        $inactiveBlogs = Blog::where('isActive', false)->count();
+        return Inertia::render('Blogs/Dashboard', [
+            'blogs' => $blogs,
+            'featuredBlogs' => $featuredBlogs,
+            'activeBlogs' => $activeBlogs,
+            'inactiveBlogs' => $inactiveBlogs
+        ]);
     }
 }
