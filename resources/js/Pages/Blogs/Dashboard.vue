@@ -74,13 +74,18 @@
         </Modal>
         <!-- View Blog Modal -->
         <Modal :show="isOpenView" @closeModal="closeModalView">
-            <h1>{{ selectedBlog.title }}</h1>
+            <img :src="selectedBlog?.image ? '/storage/' + selectedBlog.image : defaultImage" alt="Image"
+                class="mx-auto w-full h-[30rem] mb-10">
+
+            <h1 class="text-center mb-10">{{ selectedBlog.title }}</h1>
+            <small>{{ selectedBlog.author }}</small>
+            <p>{{ selectedBlog.content }}</p>
         </Modal>
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 import AdminLayout from "@/Layouts/AdminLayout.vue";
@@ -97,6 +102,9 @@ const props = defineProps({
     activeBlogs: Number,
     inactiveBlogs: Number,
 });
+
+
+const defaultImage = "/images/img.jpeg";
 
 const form = useForm({
     title: "",
@@ -135,6 +143,24 @@ const OpenModalView = (blog) => {
 const closeModalView = () => {
     isOpenView.value = false;
 };
+
+// Function to handle Escape key press
+const handleEscape = (event) => {
+    if (event.key === "Escape") {
+        closeModal();       // Close Add Blog Modal
+        closeModalView();   // Close View Blog Modal
+    }
+};
+
+// Attach event listener when component is mounted
+onMounted(() => {
+    window.addEventListener("keydown", handleEscape);
+});
+
+// Remove event listener when component is unmounted
+onUnmounted(() => {
+    window.removeEventListener("keydown", handleEscape);
+});
 </script>
 
 <style scoped>
