@@ -1,27 +1,31 @@
 <template>
-    <div v-if="show" class="fixed inset-0 flex items-center justify-center z-50">
+    <div v-if="show" class="fixed inset-0 flex items-center justify-center z-50" @keydown.esc="closeModal" tabindex="0">
         <!-- Background Overlay -->
-        <div class="fixed inset-0 bg-black opacity-50" @click="emit('closeModal')"></div>
+        <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
 
         <!-- Modal Content -->
         <div
-            class="bg-white rounded-lg shadow-xl transform transition-all w-[100rem] h-fit max-h-[50rem] overflow-auto relative">
+            class="bg-white rounded-lg shadow-xl transform transition-all min-w-[60rem] h-fit max-h-[50rem] overflow-auto relative">
             <!-- Close Button -->
-            <button @click="emit('closeModal')"
-                class="sticky block top-3 mr-2 ml-auto text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+            <button @click="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+                <i class="fa-solid fa-xmark text-xl"></i>
             </button>
 
-            <div class="px-4 py-5 sm:p-6">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b">
+                <h2 class="text-xl font-bold">{{ title }}</h2>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="px-6 py-4">
                 <slot></slot> <!-- Injected content from parent -->
             </div>
-            <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button @click="emit('closeModal')"
-                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                    Close
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t flex justify-end space-x-2">
+                <button @click="closeModal" class="px-3 py-1 bg-gray-500 text-white rounded-md">Close</button>
+                <button v-if="actionButton" @click="actionButton.action" :class="actionButton.class">
+                    {{ actionButton.text }}
                 </button>
             </div>
         </div>
@@ -29,11 +33,32 @@
 </template>
 
 <script setup>
-defineProps({
-    show: Boolean, // Control visibility
+import { defineProps, defineEmits, onMounted, onBeforeUnmount } from "vue";
+
+const props = defineProps({
+    show: Boolean,
+    title: String,
+    actionButton: Object,
 });
 
-const emit = defineEmits(["closeModal"]); // Emit close event
+const emit = defineEmits(["closeModal"]);
+
+const closeModal = () => {
+    emit("closeModal");
+};
+
+const handleKeydown = (event) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+};
+
+onMounted(() => {
+    window.addEventListener("keydown", handleKeydown);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
-<style scoped></style>

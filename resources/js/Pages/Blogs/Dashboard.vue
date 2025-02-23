@@ -25,10 +25,12 @@
                             {{ blog.content }}
                         </td>
                         <td class="border px-4 py-1 text-left flex space-x-2">
-                            <button @click="OpenModalView(blog)">
+                            <button @click="openModal('view', blog)">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <button @click="openModal('edit', blog)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
                             <i class="fa-solid fa-trash"></i>
                         </td>
                     </tr>
@@ -59,27 +61,27 @@
         </div>
 
         <!-- Add Blog Modal -->
-        <Modal :show="isOpen" @closeModal="closeModal">
-            <h1 class="text-2xl font-bold">Create a New Blog</h1>
-            <form @submit.prevent="submitForm">
-                <ImageUpload />
-                <TextInput forName="title" inputLabel="Title" v-model="form.title" :errorMessage="form.errors.title"
-                    type="text" />
-                <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
-                    :errorMessage="form.errors.content" />
-                <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block" :disabled="form.processing">
-                    Add Blog
-                </button>
-            </form>
-        </Modal>
-        <!-- View Blog Modal -->
-        <Modal :show="isOpenView" @closeModal="closeModalView">
-            <img :src="selectedBlog?.image ? '/storage/' + selectedBlog.image : defaultImage" alt="Image"
-                class="mx-auto w-full h-[30rem] mb-10">
+        <Modal :show="isModalOpen" :title="modalTitle" :actionButton="modalActionButton"
+            @closeModal="isModalOpen = false">
 
-            <h1 class="text-center mb-10">{{ selectedBlog.title }}</h1>
-            <small>{{ selectedBlog.author }}</small>
-            <p>{{ selectedBlog.content }}</p>
+            <!-- View Blog -->
+            <template v-if="modalType === 'view'">
+                <img :src="selectedBlog?.image ? '/storage/' + selectedBlog.image : defaultImage" alt="Blog Image"
+                    class="mx-auto w-full h-40 mb-4">
+                <h1 class="text-xl font-bold mb-2">{{ selectedBlog.title }}</h1>
+                <p>{{ selectedBlog.content }}</p>
+            </template>
+
+            <!-- Edit Blog -->
+            <template v-if="modalType === 'edit'">
+                <form @submit.prevent="submitForm">
+                    <ImageUpload v-model="form.image" />
+                    <TextInput forName="title" type="string" inputLabel="Title" v-model="selectedBlog.title" />
+                    <RichTextEditor forName="content" inputLabel="Content" v-model="selectedBlog.content" />
+                    <button class="px-3 py-1 mt-4 bg-blue-500 text-white rounded-md">Save Changes</button>
+                </form>
+            </template>
+
         </Modal>
     </div>
 </template>
@@ -105,11 +107,17 @@ const props = defineProps({
 
 
 const defaultImage = "/images/img.jpeg";
+const isModalOpen = ref(false);
+const modalType = ref("");
+const selectedBlog = ref(null);
+
 
 const form = useForm({
     title: "",
     content: "",
+    image: null,
 });
+
 
 const submitForm = () => {
     form.post(route("addBlog"), {
@@ -123,43 +131,45 @@ const submitForm = () => {
     });
 };
 
-const isOpen = ref(false); // Modal state
+const openModal = (type, blog) => {
+    modalType.value = type;
+    selectedBlog.value = blog;
+    isModalOpen.value = true;
 
-// Open & Close Modal Functions
-const OpenModal = () => {
-    isOpen.value = true;
-};
-const closeModal = () => {
-    isOpen.value = false;
-};
+    if (type === "edit" && blog) {
+        form.title = blog.title || "";
+        form.content = blog.content || "";
 
-const isOpenView = ref(false); // Modal state
-const selectedBlog = ref(null); // Store the selected blog
-
-const OpenModalView = (blog) => {
-    selectedBlog.value = blog; // Assign the clicked blog
-    isOpenView.value = true;
-};
-const closeModalView = () => {
-    isOpenView.value = false;
-};
-
-// Function to handle Escape key press
-const handleEscape = (event) => {
-    if (event.key === "Escape") {
-        closeModal();       // Close Add Blog Modal
-        closeModalView();   // Close View Blog Modal
+        // Pass existing image URL if available
+        form.image = blog.image ? `/storage/${blog.image}` : null;
     }
 };
 
-// Attach event listener when component is mounted
-onMounted(() => {
-    window.addEventListener("keydown", handleEscape);
+
+
+
+// Computed properties for modal title and action button
+const modalTitle = computed(() => {
+    return modalType.value === "view"
+        ? "View Blog"
+        : modalType.value === "edit"
+            ? "Edit Blog"
+            : "Delete Blog";
 });
 
-// Remove event listener when component is unmounted
-onUnmounted(() => {
-    window.removeEventListener("keydown", handleEscape);
+
+const modalActionButton = computed(() => {
+    if (modalType.value === "delete") {
+        return {
+            text: "Delete",
+            class: "px-3 py-1 bg-red-500 text-white rounded-md",
+            action: () => {
+                console.log("Deleting blog:", selectedBlog.value.id);
+                isModalOpen.value = false;
+            },
+        };
+    }
+    return null;
 });
 </script>
 
