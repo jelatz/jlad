@@ -1,8 +1,10 @@
 <template>
   <div class="grid place-items-center">
-    <div class="relative w-64 h-56 rounded-lg overflow-hidden border border-slate-300">
+    <div class="relative w-64 h-56 rounded-lg overflow-hidden border border-slate-300 group">
+      <!-- Show label only when hovered if modelValue exists -->
       <label for="imageUpload"
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid content-end cursor-pointer">
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid content-end cursor-pointer bg-black/50 text-white px-2 py-1 rounded-md transition-opacity duration-300 text-sm"
+        :class="{ 'opacity-0 group-hover:opacity-100': modelValue, 'opacity-100': !modelValue }">
         {{ label }}
       </label>
       <input type="file" id="imageUpload" @change="onFileChange" hidden accept="image/*" />

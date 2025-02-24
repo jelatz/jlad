@@ -24,14 +24,16 @@
                         <td class="border px-4 py-1 text-left">
                             {{ blog.content }}
                         </td>
-                        <td class="border px-4 py-1 text-left flex space-x-2">
+                        <td class="border px-4 py-1 text-left flex space-x-2 items-center">
                             <button @click="openModal('view', blog)">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                             <button @click="openModal('edit', blog)">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <i class="fa-solid fa-trash"></i>
+                            <button @click="deleteBlog(blog)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -55,7 +57,7 @@
 
         <!-- Add Blog Button -->
         <div class="my-10 mr-11">
-            <button class="glass-button ml-auto block" @click="OpenModal">
+            <button class="glass-button ml-auto block" @click="openModal('create', '')">
                 Add Blog
             </button>
         </div>
@@ -64,9 +66,20 @@
         <Modal :show="isModalOpen" :title="modalTitle" :actionButton="modalActionButton"
             @closeModal="isModalOpen = false">
 
+            <!-- Create Blog -->
+            <template v-if="modalType === 'create'">
+                <h1 class="text-2xl font-bold">Create a New Blog</h1>
+                <form @submit.prevent="submitForm">
+                    <ImageUpload v-model="form.image" />
+                    <TextInput forName="title" type="text" inputLabel="Title" v-model="form.title" />
+                    <RichTextEditor forName="content" inputLabel="Content" v-model="form.content" />
+                    <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block"
+                        :disabled="form.processing">Add Blog</button>
+                </form>
+            </template>
             <!-- View Blog -->
             <template v-if="modalType === 'view'">
-                <img :src="selectedBlog?.image ? '/storage/' + selectedBlog.image : defaultImage" alt="Blog Image"
+                <img :src="selectedBlog?.image ? ('/storage/' + selectedBlog.image) : defaultImage" alt="Blog Image"
                     class="mx-auto w-full h-40 mb-4">
                 <h1 class="text-xl font-bold mb-2">{{ selectedBlog.title }}</h1>
                 <p>{{ selectedBlog.content }}</p>
@@ -89,7 +102,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
-
+import Swal from 'sweetalert2';
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import Card from "@/Components/Card.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -119,14 +132,25 @@ const form = useForm({
 });
 
 
+const closeModal = isModalOpen.value = false;
+
 const submitForm = () => {
     form.post(route("addBlog"), {
         onError: (errors) => {
             console.log("Form submission errors:", errors);
         },
         onSuccess: () => {
-            closeModal();
-            form.reset();
+            Swal.fire({
+                title: "Success",
+                text: "Blog added successfully",
+                icon: "success",
+                confirmButtonText: "Ok",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    isModalOpen.value = false;
+                    form.reset();
+                }
+            })
         },
     });
 };
@@ -140,13 +164,12 @@ const openModal = (type, blog) => {
         form.title = blog.title || "";
         form.content = blog.content || "";
 
-        // Pass existing image URL if available
+        // Ensure the correct image format is used
         form.image = blog.image ? `/storage/${blog.image}` : null;
+    } else if (type === "create") {
+        form.reset(); // Reset form for new blog
     }
 };
-
-
-
 
 // Computed properties for modal title and action button
 const modalTitle = computed(() => {
@@ -154,23 +177,37 @@ const modalTitle = computed(() => {
         ? "View Blog"
         : modalType.value === "edit"
             ? "Edit Blog"
-            : "Delete Blog";
+            : modalType.value === "create"
+                ? "Create Blog"
+                : "Delete Blog";
 });
 
 
-const modalActionButton = computed(() => {
-    if (modalType.value === "delete") {
-        return {
-            text: "Delete",
-            class: "px-3 py-1 bg-red-500 text-white rounded-md",
-            action: () => {
-                console.log("Deleting blog:", selectedBlog.value.id);
-                isModalOpen.value = false;
-            },
-        };
-    }
-    return null;
-});
+const deleteBlog = (blog) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This action cannot be undone!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.delete(route("deleteBlog", blog.id), {
+                onSuccess: () => {
+                    Swal.fire("Deleted!", "The blog has been deleted.", "success");
+                    isModalOpen.value = false;
+                },
+                onError: (errors) => {
+                    console.error("Error deleting blog:", errors);
+                    Swal.fire("Error", "Failed to delete the blog.", "error");
+                },
+            });
+        }
+    });
+};
+
 </script>
 
 <style scoped>

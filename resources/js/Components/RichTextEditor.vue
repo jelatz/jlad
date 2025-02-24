@@ -44,22 +44,34 @@ onMounted(() => {
                 ['bold', 'italic', 'underline'],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                 [{ 'align': [] }],
-                ['link', 'image']
+                ['link', 'image'],
+                [{ 'direction': 'ltr' }]  // add toolbar button if needed
             ]
-        }
+        },
+        formats: ['direction', 'align'],
     });
+
+    // Set editor to LTR
+    quill.root.setAttribute("dir", "ltr");
+    quill.root.style.textAlign = "left";
+
+    // Use quill.setText to initialize text
+    if (props.modelValue) {
+        quill.setText(props.modelValue);
+    }
 
     quill.on('text-change', () => {
-        emit('update:modelValue', quill.root.innerHTML);
+        // Get plain text instead of HTML and emit it
+        emit('update:modelValue', quill.getText().trim());
     });
-
-    quill.root.innerHTML = props.modelValue;
 });
 
-// Watch modelValue changes from parent component
+// Watch modelValue changes from parent component and use setText to update the editor
 watch(() => props.modelValue, (newValue) => {
-    if (quill.root.innerHTML !== newValue) {
-        quill.root.innerHTML = newValue;
+    if (quill.getText().trim() !== newValue) {
+        quill.setText(newValue);
+        quill.root.setAttribute("dir", "ltr");
+        quill.root.style.textAlign = "left";
     }
 });
 
@@ -74,6 +86,8 @@ const focusEditor = () => {
     min-height: 200px;
     max-height: 400px;
     overflow: auto;
-    cursor: text; /* Ensure the text cursor appears when hovering */
+    cursor: text;
+        direction: ltr;
+        text-align: left;
 }
 </style>

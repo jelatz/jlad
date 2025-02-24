@@ -15,7 +15,7 @@ class BlogController extends Controller
         // Validate
         $fields = $request->validate([
             'title' => 'required',
-            'content' => ['required', 'max:1000'],
+            'content' => ['required', 'max:10000'],
             'image' => ['image', 'file', 'nullable', 'max:300']
         ]);
 
@@ -42,5 +42,13 @@ class BlogController extends Controller
             'activeBlogs' => $activeBlogs,
             'inactiveBlogs' => $inactiveBlogs
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        return redirect()->back()->with('success', 'Blog deleted successfully!');
     }
 }
