@@ -18,11 +18,15 @@
                 </thead>
                 <tbody>
                     <tr class="hover:bg-gray-100" v-for="blog in blogs.data" :key="blog.id">
-                        <td class="border px-4 py-1 text-left">
-                            {{ blog.title }}
+                        <td class="border px-4 py-1 text-left w-fit">
+                            <p class="text-sm truncate">
+                                {{ blog.title }}
+                            </p>
                         </td>
                         <td class="border px-4 py-1 text-left">
-                            {{ blog.content }}
+                            <p class="line-clamp-1 w-full text-sm">
+                                {{ blog.content }}
+                            </p>
                         </td>
                         <td class="border px-4 py-1 text-left flex space-x-2 items-center">
                             <button @click="openModal('view', blog)">
@@ -63,8 +67,7 @@
         </div>
 
         <!-- Add Blog Modal -->
-        <Modal :show="isModalOpen" :title="modalTitle" :actionButton="modalActionButton"
-            @closeModal="isModalOpen = false">
+        <Modal :show="isModalOpen" :title="modalTitle" @closeModal="isModalOpen = false">
 
             <!-- Create Blog -->
             <template v-if="modalType === 'create'">

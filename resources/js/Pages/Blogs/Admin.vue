@@ -73,7 +73,7 @@ const submitForm = () => {
 
 const isOpen = ref(false); // Modal state
 
-// Open & Close Modal Functions
+// Open & Close Modal Functions 
 const OpenModal = () => { isOpen.value = true; };
 const closeModal = () => { isOpen.value = false; };
 
