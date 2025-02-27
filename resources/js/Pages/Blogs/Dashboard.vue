@@ -8,9 +8,16 @@
         </div>
 
         <div class="p-10">
+            <button @click="deleteSelectedBlogs" :disabled="selectedBlogs.length === 0"
+                class="bg-red-500 text-white px-3 py-2 rounded disabled:opacity-50 block ml-auto mb-3">
+                Delete Selected
+            </button>
             <table class="border min-w-full border-gray-300 border-collapse shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-gray-200">
                     <tr>
+                        <th class="border p-2">
+                            <input type="checkbox" @change="toggleSelectAll" v-model="selectAll" />
+                        </th>
                         <th class="border px-4 py-1 text-left">Title</th>
                         <th class="border px-4 py-1 text-left">Category</th>
                         <th class="border px-4 py-1 text-left">Actions</th>
@@ -18,6 +25,10 @@
                 </thead>
                 <tbody>
                     <tr class="hover:bg-gray-100" v-for="blog in blogs.data" :key="blog.id">
+                        <td class="border p-2 text-center">
+                            <input type="checkbox" :value="blog.id" v-model="selectedBlogs"
+                                @change="checkIfAllSelected" />
+                        </td>
                         <td class="border px-4 py-1 text-left w-fit">
                             <p class="text-sm truncate">
                                 {{ blog.title }}
@@ -126,6 +137,10 @@ const defaultImage = "/images/img.jpeg";
 const isModalOpen = ref(false);
 const modalType = ref("");
 const selectedBlog = ref(null);
+const selectedBlogs = ref([]);
+const selectAll = ref(false);
+
+
 
 
 const form = useForm({
@@ -206,6 +221,47 @@ const deleteBlog = (blog) => {
                     console.error("Error deleting blog:", errors);
                     Swal.fire("Error", "Failed to delete the blog.", "error");
                 },
+            });
+        }
+    });
+};
+
+
+const toggleSelectAll = () => {
+    if (selectAll.value == true) {
+        selectedBlogs.value = props.blogs.data.map(blog => blog.id); // Select all
+    } else {
+        selectedBlogs.value = []; // Unselect all
+    }
+};
+
+const checkIfAllSelected = () => {
+    selectAll.value = selectedBlogs.value.length === props.blogs.data.length;
+};
+
+const deleteSelectedBlogs = () => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This action cannot be undone!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.post(route("blog.bulkDelete"), {
+                ids: selectedBlog.value, // Pass selected IDs
+            }, {
+                onSuccess: () => {
+                    Swal.fire("Deleted!", "Selected blogs have been deleted.", "success");
+                    selectedBlog.value = []; // Clear selection
+                    selectAll.value = false; // Reset checkbox
+                },
+                onError: (errors) => {
+                    console.error("Error deleting blogs:", errors);
+                    Swal.fire("Error", "Failed to delete selected blogs.", "error");
+                }
             });
         }
     });

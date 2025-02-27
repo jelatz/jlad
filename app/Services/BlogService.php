@@ -44,4 +44,14 @@ class BlogService
     {
         return $this->blogRepository->deleteBlog($id);
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'exists:blogs,id'
+        ]);
+
+        return $this->blogRepository->bulkDelete($request->ids);
+    }
 }

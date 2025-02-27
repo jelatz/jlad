@@ -38,4 +38,10 @@ class BlogController extends Controller
         $this->blogService->deleteBlog($id);
         return redirect()->back()->with('success', 'Blog deleted successfully!');
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $this->blogService->bulkDelete($request);
+        return redirect()->back()->with('success', 'Blogs deleted successfully!');
+    }
 }

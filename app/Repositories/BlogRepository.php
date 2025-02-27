@@ -36,4 +36,9 @@ class BlogRepository
         $blog = Blog::findOrFail($id);
         return $blog->delete();
     }
+
+    public function bulkDelete($ids)
+    {
+        return Blog::whereIn('id', $ids)->delete();
+    }
 }
