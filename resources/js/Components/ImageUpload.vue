@@ -23,7 +23,6 @@ const props = defineProps({
     type: String,
     default: '/images/img.jpeg',
   },
-  errorMessage: String,
   label: {
     type: String,
     default: 'Upload Image',
@@ -33,6 +32,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const previewImage = ref(null);
+const errorMessage = ref("");
 
 // Watch for existing image URL when opening modal
 watch(() => props.modelValue, (newValue) => {
@@ -43,10 +43,17 @@ watch(() => props.modelValue, (newValue) => {
 
 const onFileChange = (e) => {
   const file = e.target.files[0];
-  if (file) {
-    previewImage.value = URL.createObjectURL(file);
-    emit('update:modelValue', file);
+
+  if (!file) return; // Ensure a file is selected
+
+  if (file.size > 300 * 1024) { // Convert 300KB to bytes
+    errorMessage.value = 'File size must be less than 300KB';
+    return;
   }
+
+  errorMessage.value = ''; // Clear any previous error
+  previewImage.value = URL.createObjectURL(file);
+  emit('update:modelValue', file);
 };
 </script>
 

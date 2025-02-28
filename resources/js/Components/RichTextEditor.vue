@@ -1,17 +1,16 @@
 <template>
     <div class="my-5 overflow-auto">
         <label :for="forName" class="text-2xl mb-2 block">{{ inputLabel }}</label>
-        <div 
-            ref="editor" 
-            :class="['w-full h-full border border-gray-300 rounded-md quill-editor', {'ring-1 ring-red-500' : errorMessage}]"
+        <div ref="editor"
+            :class="['w-full h-full border border-gray-300 rounded-md quill-editor', { 'ring-1 ring-red-500': showErrorMessage }]"
             @click="focusEditor">
         </div>
-        <small class="text-red-600" v-if="errorMessage">{{ errorMessage }}</small>
+        <small class="text-red-600" v-if="showErrorMessage">{{ errorMessage }}</small>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
@@ -34,51 +33,48 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const editor = ref(null);
 let quill;
+const isTyping = ref(false);
 
 onMounted(() => {
     quill = new Quill(editor.value, {
         theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                [{ 'align': [] }],
-                ['link', 'image'],
-                [{ 'direction': 'ltr' }]  // add toolbar button if needed
-            ]
-        },
-        formats: ['direction', 'align'],
+        formats: ['direction', 'align', 'header', 'bold', 'italic', 'underline', 'list', 'link', 'image'],
     });
 
-    // Set editor to LTR
     quill.root.setAttribute("dir", "ltr");
     quill.root.style.textAlign = "left";
 
-    // Use quill.setText to initialize text
     if (props.modelValue) {
         quill.setText(props.modelValue);
     }
 
     quill.on('text-change', () => {
-        // Get plain text instead of HTML and emit it
+        isTyping.value = true; // Reset error state when typing
         emit('update:modelValue', quill.getText().trim());
+    });
+
+    quill.on('selection-change', (range) => {
+        if (!range) {
+            isTyping.value = false; // Reset when focus is lost
+        }
     });
 });
 
-// Watch modelValue changes from parent component and use setText to update the editor
 watch(() => props.modelValue, (newValue) => {
     if (quill.getText().trim() !== newValue) {
         quill.setText(newValue);
-        quill.root.setAttribute("dir", "ltr");
-        quill.root.style.textAlign = "left";
     }
 });
 
-// Focus editor when clicked anywhere inside it
+// Computed property to show/hide the error message
+const showErrorMessage = computed(() => {
+    return props.errorMessage && !isTyping.value;
+});
+
 const focusEditor = () => {
     quill.focus();
 };
+
 </script>
 
 <style scoped>
@@ -87,7 +83,7 @@ const focusEditor = () => {
     max-height: 400px;
     overflow: auto;
     cursor: text;
-        direction: ltr;
+    direction: ltr;
         text-align: left;
 }
 </style>

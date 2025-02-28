@@ -85,8 +85,10 @@
                 <h1 class="text-2xl font-bold">Create a New Blog</h1>
                 <form @submit.prevent="submitForm">
                     <ImageUpload v-model="form.image" />
-                    <TextInput forName="title" type="text" inputLabel="Title" v-model="form.title" />
-                    <RichTextEditor forName="content" inputLabel="Content" v-model="form.content" />
+                    <TextInput forName="title" type="text" inputLabel="Title" v-model="form.title"
+                        :errorMessage="form.errors.title" />
+                    <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
+                        :errorMessage="form.errors.content" />
                     <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block"
                         :disabled="form.processing">Add Blog</button>
                 </form>
@@ -103,8 +105,10 @@
             <template v-if="modalType === 'edit'">
                 <form @submit.prevent="submitForm">
                     <ImageUpload v-model="form.image" />
-                    <TextInput forName="title" type="string" inputLabel="Title" v-model="selectedBlog.title" />
-                    <RichTextEditor forName="content" inputLabel="Content" v-model="selectedBlog.content" />
+                    <TextInput forName="title" type="string" inputLabel="Title" v-model="selectedBlog.title"
+                        :errorMessage="form.errors.title" />
+                    <RichTextEditor forName="content" inputLabel="Content" v-model="selectedBlog.content"
+                        :errorMessage="form.errors.content" />
                     <button class="px-3 py-1 mt-4 bg-blue-500 text-white rounded-md">Save Changes</button>
                 </form>
             </template>
