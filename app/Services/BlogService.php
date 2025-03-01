@@ -30,7 +30,7 @@ class BlogService
         $fields = $request->validate([
             'title' => 'required',
             'content' => ['required', 'max:10000'],
-            'image' => ['image', 'file', 'nullable', 'max:300']
+            'image' => ['nullable']
         ]);
 
         if ($request->hasFile('image')) {

@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="w-full">
+        <!-- Cards for the blog counts -->
         <div class="p-10 flex items-center justify-evenly w-full space-x-5">
             <Card class="bg-blue-700 text-white" cardTitle="Total Blogs" :count="blogs.total" />
             <Card class="bg-blue-800 text-white" cardTitle="Featured Blogs" :count="featuredBlogs" />
@@ -8,10 +9,26 @@
         </div>
 
         <div class="p-10">
-            <button @click="deleteSelectedBlogs" :disabled="selectedBlogs.length === 0"
-                class="bg-red-500 text-white px-3 py-2 rounded disabled:opacity-50 block ml-auto mb-3">
-                Delete Selected
-            </button>
+            <!-- Show and bulk delete button -->
+            <div class="flex justify-between items-center">
+                <div>
+                    <label for="pages">Show : </label>
+                    <select name="pages" id="pages" class="rounded-md border border-1 px-2 py-1">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="all">All</option>
+                    </select>
+                    <p class="inline-block ml-2">Entries</p>
+                </div>
+
+                <button @click="deleteSelectedBlogs" :disabled="selectedBlogs.length === 0"
+                    class="bg-red-500 text-white px-3 py-2 rounded disabled:opacity-50 block ml-auto mb-3">
+                    Delete Selected
+                </button>
+            </div>
+            <!-- Main Table -->
             <table class="border min-w-full border-gray-300 border-collapse shadow-lg rounded-lg overflow-hidden">
                 <thead class="bg-gray-200">
                     <tr>
@@ -29,16 +46,17 @@
                             <input type="checkbox" :value="blog.id" v-model="selectedBlogs"
                                 @change="checkIfAllSelected" />
                         </td>
-                        <td class="border px-4 py-1 text-left w-fit">
-                            <p class="text-sm truncate">
+                        <td class="border px-4 py-1 text-left">
+                            <p class="text-sm line-clamp-1 break-all">
                                 {{ blog.title }}
                             </p>
                         </td>
                         <td class="border px-4 py-1 text-left">
-                            <p class="line-clamp-1 w-full text-sm">
+                            <p class="line-clamp-2 text-sm break-all">
                                 {{ blog.content }}
                             </p>
                         </td>
+
                         <td class="border px-4 py-1 text-left flex space-x-2 items-center">
                             <button @click="openModal('view', blog)">
                                 <i class="fa-solid fa-eye"></i>
@@ -79,7 +97,6 @@
 
         <!-- Add Blog Modal -->
         <Modal :show="isModalOpen" :title="modalTitle" @closeModal="isModalOpen = false">
-
             <!-- Create Blog -->
             <template v-if="modalType === 'create'">
                 <h1 class="text-2xl font-bold">Create a New Blog</h1>
@@ -90,13 +107,17 @@
                     <RichTextEditor forName="content" inputLabel="Content" v-model="form.content"
                         :errorMessage="form.errors.content" />
                     <button class="px-3 py-1 rounded-md bg-gray-500 text-white ml-auto block"
-                        :disabled="form.processing">Add Blog</button>
+                        :disabled="form.processing">
+                        Add Blog
+                    </button>
                 </form>
             </template>
             <!-- View Blog -->
             <template v-if="modalType === 'view'">
-                <img :src="selectedBlog?.image ? ('/storage/' + selectedBlog.image) : defaultImage" alt="Blog Image"
-                    class="mx-auto w-full h-40 mb-4">
+                <img :src="selectedBlog?.image
+                    ? '/storage/' + selectedBlog.image
+                    : defaultImage
+                    " alt="Blog Image" class="mx-auto w-full h-40 mb-4" />
                 <h1 class="text-xl font-bold mb-2">{{ selectedBlog.title }}</h1>
                 <p>{{ selectedBlog.content }}</p>
             </template>
@@ -109,10 +130,11 @@
                         :errorMessage="form.errors.title" />
                     <RichTextEditor forName="content" inputLabel="Content" v-model="selectedBlog.content"
                         :errorMessage="form.errors.content" />
-                    <button class="px-3 py-1 mt-4 bg-blue-500 text-white rounded-md">Save Changes</button>
+                    <button class="px-3 py-1 mt-4 bg-blue-500 text-white rounded-md">
+                        Save Changes
+                    </button>
                 </form>
             </template>
-
         </Modal>
     </div>
 </template>
@@ -120,7 +142,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import Card from "@/Components/Card.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -129,6 +151,7 @@ import ImageUpload from "@/Components/ImageUpload.vue";
 import Modal from "@/Components/Modal.vue";
 
 defineOptions({ layout: AdminLayout });
+
 const props = defineProps({
     blogs: Object,
     featuredBlogs: Number,
@@ -136,25 +159,15 @@ const props = defineProps({
     inactiveBlogs: Number,
 });
 
-
 const defaultImage = "/images/img.jpeg";
-const isModalOpen = ref(false);
-const modalType = ref("");
-const selectedBlog = ref(null);
-const selectedBlogs = ref([]);
-const selectAll = ref(false);
 
 
-
-
+// Form Submission
 const form = useForm({
     title: "",
     content: "",
     image: null,
 });
-
-
-const closeModal = isModalOpen.value = false;
 
 const submitForm = () => {
     form.post(route("addBlog"), {
@@ -170,12 +183,17 @@ const submitForm = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     isModalOpen.value = false;
-                    form.reset();
                 }
-            })
+            });
+            form.reset();
         },
     });
 };
+
+// Modals
+const isModalOpen = ref(false);
+const modalType = ref("");
+const selectedBlog = ref(null);
 
 const openModal = (type, blog) => {
     modalType.value = type;
@@ -204,6 +222,23 @@ const modalTitle = computed(() => {
                 : "Delete Blog";
 });
 
+// Select all button
+const selectedBlogs = ref([]);
+const selectAll = ref(false);
+
+const toggleSelectAll = () => {
+    if (selectAll.value == true) {
+        selectedBlogs.value = props.blogs.data.map((blog) => blog.id); // Select all
+    } else {
+        selectedBlogs.value = []; // Unselect all
+    }
+};
+
+const checkIfAllSelected = () => {
+    selectAll.value = selectedBlogs.value.length === props.blogs.data.length;
+};
+
+// Delete Single Blog
 
 const deleteBlog = (blog) => {
     Swal.fire({
@@ -218,7 +253,11 @@ const deleteBlog = (blog) => {
         if (result.isConfirmed) {
             form.delete(route("deleteBlog", blog.id), {
                 onSuccess: () => {
-                    Swal.fire("Deleted!", "The blog has been deleted.", "success");
+                    Swal.fire(
+                        "Deleted!",
+                        "The blog has been deleted.",
+                        "success"
+                    );
                     isModalOpen.value = false;
                 },
                 onError: (errors) => {
@@ -230,18 +269,7 @@ const deleteBlog = (blog) => {
     });
 };
 
-
-const toggleSelectAll = () => {
-    if (selectAll.value == true) {
-        selectedBlogs.value = props.blogs.data.map(blog => blog.id); // Select all
-    } else {
-        selectedBlogs.value = []; // Unselect all
-    }
-};
-
-const checkIfAllSelected = () => {
-    selectAll.value = selectedBlogs.value.length === props.blogs.data.length;
-};
+// Delete Multiple Blogs
 
 const deleteSelectedBlogs = () => {
     Swal.fire({
@@ -254,23 +282,34 @@ const deleteSelectedBlogs = () => {
         confirmButtonText: "Yes, delete!",
     }).then((result) => {
         if (result.isConfirmed) {
-            form.post(route("blog.bulkDelete"), {
-                ids: selectedBlog.value, // Pass selected IDs
-            }, {
-                onSuccess: () => {
-                    Swal.fire("Deleted!", "Selected blogs have been deleted.", "success");
-                    selectedBlog.value = []; // Clear selection
-                    selectAll.value = false; // Reset checkbox
+            form.post(
+                route("blog.bulkDelete"),
+                {
+                    ids: selectedBlog.value, // Pass selected IDs
                 },
-                onError: (errors) => {
-                    console.error("Error deleting blogs:", errors);
-                    Swal.fire("Error", "Failed to delete selected blogs.", "error");
+                {
+                    onSuccess: () => {
+                        Swal.fire(
+                            "Deleted!",
+                            "Selected blogs have been deleted.",
+                            "success"
+                        );
+                        selectedBlog.value = []; // Clear selection
+                        selectAll.value = false; // Reset checkbox
+                    },
+                    onError: (errors) => {
+                        console.error("Error deleting blogs:", errors);
+                        Swal.fire(
+                            "Error",
+                            "Failed to delete selected blogs.",
+                            "error"
+                        );
+                    },
                 }
-            });
+            );
         }
     });
 };
-
 </script>
 
 <style scoped>

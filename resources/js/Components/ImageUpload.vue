@@ -18,7 +18,7 @@
 import { ref, defineProps, defineEmits, watch } from 'vue';
 
 const props = defineProps({
-  modelValue: [File, String], // Accept both File and String (image URL)
+  modelValue: [File],
   defaultImage: {
     type: String,
     default: '/images/img.jpeg',
@@ -46,8 +46,8 @@ const onFileChange = (e) => {
 
   if (!file) return; // Ensure a file is selected
 
-  if (file.size > 300 * 1024) { // Convert 300KB to bytes
-    errorMessage.value = 'File size must be less than 300KB';
+  if (file.size > 25 * 1024 * 1024) { // 25mb
+    errorMessage.value = 'File size must be less than 25mb';
     return;
   }
 

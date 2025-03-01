@@ -2,7 +2,7 @@
     <div class="my-5 overflow-auto">
         <label :for="forName" class="text-2xl mb-2 block">{{ inputLabel }}</label>
         <div ref="editor"
-            :class="['w-full h-full border border-gray-300 rounded-md quill-editor', { 'ring-1 ring-red-500': showErrorMessage }]"
+            :class="['w-full h-full max-h-[80rem] border border-gray-300 rounded-md quill-editor', { 'ring-1 ring-red-500': showErrorMessage }]"
             @click="focusEditor">
         </div>
         <small class="text-red-600" v-if="showErrorMessage">{{ errorMessage }}</small>

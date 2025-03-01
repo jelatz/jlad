@@ -8,7 +8,7 @@ class BlogRepository
 {
     public function getAllBlogs($pagination = 10)
     {
-        return Blog::orderBy('created_at', 'desc')->paginate($pagination);
+        return Blog::paginate($pagination);
     }
 
     public function countFeaturedBlogs()

@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function create(Request $request)
     {
         $this->blogService->createBlog($request);
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with(['message', 'Blog created successfully!', 'type', 'success']);
     }
 
     public function getAllBlog()
@@ -27,16 +27,16 @@ class BlogController extends Controller
         return Inertia::render('Blogs/Dashboard', $data);
     }
 
-    public function getAllBlogForAdmin()
-    {
-        $data = $this->blogService->getAllBlogData();
-        return Inertia::render('Admin/Dashboard', $data);
-    }
+    // public function getAllBlogForAdmin()
+    // {
+    //     $data = $this->blogService->getAllBlogData();
+    //     return Inertia::render('Admin/Dashboard', $data);
+    // }
 
     public function destroy($id)
     {
         $this->blogService->deleteBlog($id);
-        return redirect()->back()->with('success', 'Blog deleted successfully!');
+        return redirect()->back()->with(['message', 'Blog deleted successfully!', 'type', 'danger']);
     }
 
     public function bulkDelete(Request $request)
