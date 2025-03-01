@@ -4,8 +4,7 @@
         <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
 
         <!-- Modal Content -->
-        <div
-            class="bg-white rounded-lg shadow-xl transform transition-all min-w-[80rem] h-fit max-h-[85rem] overflow-auto relative">
+        <div class="bg-white rounded-lg shadow-xl transform transition-all w-[95%] h-[95%] overflow-auto relative">
             <!-- Close Button -->
             <button @click="closeModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
                 <i class="fa-solid fa-xmark text-xl"></i>

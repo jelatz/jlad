@@ -27,11 +27,10 @@ class BlogController extends Controller
         return Inertia::render('Blogs/Dashboard', $data);
     }
 
-    // public function getAllBlogForAdmin()
-    // {
-    //     $data = $this->blogService->getAllBlogData();
-    //     return Inertia::render('Admin/Dashboard', $data);
-    // }
+    public function viewBlogs(){
+        $data = $this->blogService->getAllBlogData();
+        return Inertia::render('Blogs/Blogs', $data);
+    }
 
     public function destroy($id)
     {

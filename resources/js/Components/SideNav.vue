@@ -1,16 +1,17 @@
 <template>
     <div @click="" class="min-h-screen w-60 shadow-lg overflow-hidden">
-        <Link :href="route('admin')"><img :src="Logo" :alt="alt" class="w-32 md:mx-auto h-32" />
+        <Link :href="route('dashboard')"><img :src="Logo" :alt="alt" class="w-32 md:mx-auto h-32" />
         </Link>
 
         <div>
             <ul class="flex flex-col items-stretch nav">
                 <li>
-                    <Link :href="route('dashboard')" :class="{'bg-[#222831] text-white' : $page.component === 'Blogs/Dashboard'}">Dashboard</Link>
+                    <Link :href="route('dashboard')"
+                        :class="{ 'bg-[#222831] text-white': $page.component === 'Blogs/Dashboard' }">Dashboard</Link>
                 </li>
-                <li>
+                <!-- <li>
                     <Link :href="route('admin')":class="{'bg-[#222831] text-white' : $page.component === 'Blogs/Admin'}">Blogs</Link>
-                </li>
+                </li> -->
                 <li>
                     <Link :href="route('blogs')">Back to blog page</Link>
                 </li>

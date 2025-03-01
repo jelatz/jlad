@@ -6,7 +6,7 @@
         <div class="container px-5">
             <h1 class="mb-3 text-sm">Recent Posts</h1>
             <div class="flex items-center space-x-5">
-                <BlogCard v-for="(blog, index) in blogs" :key="index" :data="blog" />
+                <BlogCard v-for="blog in props.blogs.data" :key="blog.id" :data="blog" />
             </div>
         </div>
 
@@ -69,7 +69,12 @@ import Hero from '@/Components/Hero.vue';
 import Newsletter from '@/Components/Newsletter.vue'
 defineOptions({ layout: BlogLayout });
 
-
+const props = defineProps({
+    blogs: Object,
+    featuredBlogs: Number,
+    activeBlogs: Number,
+    inactiveBlogs: Number,
+});
 
 const socMed = ref([
     "/images/facebook.svg",
