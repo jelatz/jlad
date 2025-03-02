@@ -22,6 +22,7 @@ Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter')
 
 // Admin route
 Route::get('/wanderladz/admin', [BlogController::class, 'getAllBlog'])->name('dashboard');
+Route::get('/blogs', [BlogController::class, 'getAllBlog'])->name('blogs.index');
 Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('deleteBlog');
 
 Route::post('/blogs/bulk-delete', [BlogController::class, 'bulkDelete'])->name('blog.bulkDelete');

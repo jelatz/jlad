@@ -12,8 +12,9 @@
             <!-- Show and bulk delete button -->
             <div class="flex justify-between items-center">
                 <div>
-                    <label for="pages">Show : </label>
-                    <select name="pages" id="pages" class="rounded-md border border-1 px-2 py-1">
+                    <label for="pages">Show:</label>
+                    <select name="pages" id="pages" class="rounded-md border border-1 px-2 py-1"
+                        v-model="selectedPageSize" @change="updatePagination">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="50">50</option>
@@ -140,8 +141,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { useForm } from "@inertiajs/vue3";
+import { ref, computed, watchEffect } from "vue";
+import { useForm, router } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import Card from "@/Components/Card.vue";
@@ -310,6 +311,16 @@ const deleteSelectedBlogs = () => {
         }
     });
 };
+
+// Updating pagination based on the selected page size
+const selectedPageSize = ref("10");
+
+const updatePagination = () => {
+    const size = selectedPageSize.value === "all" ? 1000 : parseInt(selectedPageSize.value);
+    router.get(route("blogs.index", { per_page: size }));
+}
+
+
 </script>
 
 <style scoped>

@@ -6,10 +6,10 @@ use App\Models\Blog;
 
 class BlogRepository
 {
-    public function getAllBlogs($pagination = 10)
+    public function getAllBlogs($perPage = 10)
     {
-        return Blog::paginate($pagination);
-    }
+        return Blog::orderBy('created_at', 'desc')->paginate($perPage);
+    }    
 
     public function countFeaturedBlogs()
     {

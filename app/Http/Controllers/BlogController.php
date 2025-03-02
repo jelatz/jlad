@@ -21,13 +21,22 @@ class BlogController extends Controller
         return redirect()->route('dashboard')->with(['message', 'Blog created successfully!', 'type', 'success']);
     }
 
-    public function getAllBlog()
+    // public function getAllBlog()
+    // {
+    //     $data = $this->blogService->getAllBlogData();
+    //     return Inertia::render('Blogs/Dashboard', $data);
+    // }
+
+    public function getAllBlog(Request $request)
     {
-        $data = $this->blogService->getAllBlogData();
+        $perPage = $request->query('per_page', 10); // Default to 10
+        $data = $this->blogService->getAllBlogData($perPage);
         return Inertia::render('Blogs/Dashboard', $data);
     }
 
-    public function viewBlogs(){
+
+    public function viewBlogs()
+    {
         $data = $this->blogService->getAllBlogData();
         return Inertia::render('Blogs/Blogs', $data);
     }

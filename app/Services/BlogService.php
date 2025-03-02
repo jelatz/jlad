@@ -15,10 +15,10 @@ class BlogService
         $this->blogRepository = $blogRepository;
     }
 
-    public function getAllBlogData()
+    public function getAllBlogData($perPage = 10)
     {
         return [
-            'blogs' => $this->blogRepository->getAllBlogs(),
+            'blogs' => $this->blogRepository->getAllBlogs($perPage),
             'featuredBlogs' => $this->blogRepository->countFeaturedBlogs(),
             'activeBlogs' => $this->blogRepository->countActiveBlogs(),
             'inactiveBlogs' => $this->blogRepository->countInactiveBlogs(),
