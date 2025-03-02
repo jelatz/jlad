@@ -158,6 +158,7 @@ const props = defineProps({
     featuredBlogs: Number,
     activeBlogs: Number,
     inactiveBlogs: Number,
+    perPage: String,
 });
 
 const defaultImage = "/images/img.jpeg";
@@ -313,13 +314,12 @@ const deleteSelectedBlogs = () => {
 };
 
 // Updating pagination based on the selected page size
-const selectedPageSize = ref("10");
+const selectedPageSize = ref(props.perPage);
 
 const updatePagination = () => {
     const size = selectedPageSize.value === "all" ? 1000 : parseInt(selectedPageSize.value);
     router.get(route("blogs.index", { per_page: size }));
 }
-
 
 </script>
 

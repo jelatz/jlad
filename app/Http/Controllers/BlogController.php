@@ -31,7 +31,9 @@ class BlogController extends Controller
     {
         $perPage = $request->query('per_page', 10); // Default to 10
         $data = $this->blogService->getAllBlogData($perPage);
-        return Inertia::render('Blogs/Dashboard', $data);
+        return Inertia::render('Blogs/Dashboard', array_merge($data,[
+            'perPage' => $perPage,
+        ]));
     }
 
 
