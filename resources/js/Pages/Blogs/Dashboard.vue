@@ -271,9 +271,10 @@ const deleteBlog = (blog) => {
     });
 };
 
-// Delete Multiple Blogs
-
+// Delete multiple selected blogs
 const deleteSelectedBlogs = () => {
+    if (selectedBlogs.value.length === 0) return;
+
     Swal.fire({
         title: "Are you sure?",
         text: "This action cannot be undone!",
@@ -284,31 +285,17 @@ const deleteSelectedBlogs = () => {
         confirmButtonText: "Yes, delete!",
     }).then((result) => {
         if (result.isConfirmed) {
-            form.post(
-                route("blog.bulkDelete"),
-                {
-                    ids: selectedBlog.value, // Pass selected IDs
+            router.post(route("blogs.bulkDelete"), { ids: selectedBlogs.value }, {
+                onSuccess: () => {
+                    Swal.fire("Deleted!", "Selected blogs have been deleted.", "success");
+                    selectedBlogs.value = [];
+                    selectAll.value = false;
                 },
-                {
-                    onSuccess: () => {
-                        Swal.fire(
-                            "Deleted!",
-                            "Selected blogs have been deleted.",
-                            "success"
-                        );
-                        selectedBlog.value = []; // Clear selection
-                        selectAll.value = false; // Reset checkbox
-                    },
-                    onError: (errors) => {
-                        console.error("Error deleting blogs:", errors);
-                        Swal.fire(
-                            "Error",
-                            "Failed to delete selected blogs.",
-                            "error"
-                        );
-                    },
+                onError: (errors) => {
+                    console.error("Error deleting blogs:", errors);
+                    Swal.fire("Error", "Failed to delete selected blogs.", "error");
                 }
-            );
+            });
         }
     });
 };
