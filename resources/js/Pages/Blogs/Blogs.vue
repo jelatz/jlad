@@ -5,10 +5,8 @@
     <div class="text-black py-2 mx-auto">
         <div class="container px-5">
             <h1 class="mb-3 text-sm">Recent Posts</h1>
-            <div class="flex items-center space-x-5">
-                <Link v-for="blog in props.blogs.data" :key="blog.id" :href="`/blogs/${blog.id}`">
-                    <BlogCard :data="blog" />
-                </Link>
+            <div class="flex items-center gap-y-8 flex-wrap justify-left gap-x-12">
+                <BlogCard v-for="blog in props.blogs.data" :key="blog.id" :data="blog" />
             </div>
         </div>
 

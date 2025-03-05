@@ -25,7 +25,7 @@ Route::get('/wanderladz/admin', [BlogController::class, 'getAllBlog'])->name('da
 Route::get('/blogs', [BlogController::class, 'getAllBlog'])->name('blogs.index');
 Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('deleteBlog');
 
-Route::post('/blogs/bulk-delete', [BlogController::class, 'bulkDelete'])->name('blog.bulkDelete');
+Route::post('/blogs/bulk-delete', [BlogController::class, 'bulkDelete'])->name('blogs.bulkDelete');
 
 
 Route::post('/wanderladz/addBlog', [BlogController::class, 'create'])->name('addBlog');
