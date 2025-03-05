@@ -4,9 +4,9 @@
     <!-- container -->
     <div class="text-black py-2 mx-auto">
         <div class="container px-5">
-            <h1 class="mb-3 text-sm">Recent Posts</h1>
+            <h1 class="mb-3 text-md">Recent Posts</h1>
             <div class="flex items-center gap-y-8 flex-wrap justify-left gap-x-12">
-                <BlogCard v-for="blog in props.blogs.data" :key="blog.id" :data="blog" />
+                <BlogCard v-for="(blog, index) in props.blogs.data.slice(0, 5)" :key="blog.id" :data="blog" />
             </div>
         </div>
 

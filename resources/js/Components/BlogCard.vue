@@ -4,7 +4,7 @@
             class="object-cover w-full h-40 rounded-md">
         <small class="text-slate-400 text-xs">{{ formattedDate(data.created_at) }} - Jlad Lanete</small>
         <p class="text-sm">{{ data.title }}</p>
-        <p class="line-clamp-2 break-all">{{ data.content }}</p>
+        <p class="line-clamp-2 break-all text-xs">{{ data.content }}</p>
     </div>
 </template>
 <script setup>

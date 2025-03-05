@@ -11,8 +11,9 @@ use App\Http\Controllers\BlogController;
 // sleep(1);
 Route::inertia('/', 'Home')->name('home');
 Route::inertia('/projects', 'Projects')->name('projects');
+
 // Blogs route
-Route::get('/wanderladz', [BlogController::class, 'viewBlogs'])->name('blogs');
+Route::get('/wanderladz', [BlogController::class, 'viewBlogs'])->name('blogs.index');
 Route::inertia('wanderladz/about', 'Blogs/About')->name('about');
 Route::inertia('/wanderladz/contact-me', 'Blogs/ContactMe')->name('contact-me');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
@@ -21,8 +22,7 @@ Route::inertia('/wanderladz/travel', 'Blogs/Travel')->name('travel');
 Route::inertia('/wanderladz/newsletter', 'Blogs/Newsletter')->name('newsletter');
 
 // Admin route
-Route::get('/wanderladz/admin', [BlogController::class, 'getAllBlog'])->name('dashboard');
-Route::get('/blogs', [BlogController::class, 'getAllBlog'])->name('blogs.index');
+Route::get('/wanderladz/admin', [BlogController::class, 'index'])->name('admin.index');
 Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('deleteBlog');
 
 Route::post('/blogs/bulk-delete', [BlogController::class, 'bulkDelete'])->name('blogs.bulkDelete');

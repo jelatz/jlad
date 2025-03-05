@@ -61,7 +61,7 @@ const submitForm = () => {
                 confirmButtonText: 'Ok',
             }).then(() => {
                 // Redirect to the blogs page
-                router.push(route('blogs'));
+                router.push(route('blogs.index'));
             })
             ;
 

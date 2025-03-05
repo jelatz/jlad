@@ -15,19 +15,7 @@ class BlogController extends Controller
         $this->blogService = $blogService;
     }
 
-    public function create(Request $request)
-    {
-        $this->blogService->createBlog($request);
-        return redirect()->route('dashboard')->with(['message', 'Blog created successfully!', 'type', 'success']);
-    }
-
-    // public function getAllBlog()
-    // {
-    //     $data = $this->blogService->getAllBlogData();
-    //     return Inertia::render('Blogs/Dashboard', $data);
-    // }
-
-    public function getAllBlog(Request $request)
+    public function index(Request $request)
     {
         $perPage = $request->query('per_page', 10); // Default to 10
         $data = $this->blogService->getAllBlogData($perPage);
@@ -36,6 +24,12 @@ class BlogController extends Controller
         ]));
     }
 
+
+    public function create(Request $request)
+    {
+        $this->blogService->createBlog($request);
+        return redirect()->route('admin.index')->with(['message', 'Blog created successfully!', 'type', 'success']);
+    }
 
     public function viewBlogs()
     {

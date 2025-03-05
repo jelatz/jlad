@@ -1,7 +1,8 @@
 <template>
     <div class="blog-layout" @click="handleClickOutside">
         <header class="py-4 flex justify-between items-center px-5 md:flex-col">
-            <Link :href="route('blogs')" class="logo"><img :src="Logo" :alt="alt" class="w-1/6 md:w-52 md:mx-auto" />
+            <Link :href="route('blogs.index')" class="logo"><img :src="Logo" :alt="alt"
+                class="w-1/6 md:w-52 md:mx-auto" />
             </Link>
             <button class="hamburger md:hidden" @click.stop="toggleMobileNav">
                 <i class="fa fa-bars"></i>
@@ -9,7 +10,7 @@
             <nav class="mt-8 hidden md:block">
                 <ul class="items-center space-x-10 text-black text-center justify-center hidden md:flex">
                     <li>
-                        <Link :href="route('blogs')">Home </Link>
+                        <Link :href="route('blogs.index')">Home </Link>
                     </li>
                     <li>
                         <Link :href="route('about')">About Me</Link>
@@ -48,7 +49,7 @@
         <nav v-if="isMobileNavVisible" class="mobile-nav md:hidden absolute w-full bg-slate-200 z-50">
             <ul class="flex items-stretch flex-col text-black text-center justify-stretch">
                 <li>
-                    <Link :href="route('blogs')" class="w-full block" @click="toggleMobileNav">Home </Link>
+                    <Link :href="route('blogs.index')" class="w-full block" @click="toggleMobileNav">Home </Link>
                 </li>
                 <li>
                     <Link :href="route('about')" @click="toggleMobileNav">About Me</Link>
