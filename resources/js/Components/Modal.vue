@@ -16,7 +16,7 @@
             </div>
 
             <!-- Modal Body -->
-            <div class="px-6 py-4">
+            <div class="px-6 py-4 w-[80%] block mx-auto">
                 <slot></slot> <!-- Injected content from parent -->
             </div>
 

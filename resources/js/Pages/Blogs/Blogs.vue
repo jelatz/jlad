@@ -6,7 +6,9 @@
         <div class="container px-5">
             <h1 class="mb-3 text-sm">Recent Posts</h1>
             <div class="flex items-center space-x-5">
-                <BlogCard v-for="blog in props.blogs.data" :key="blog.id" :data="blog" />
+                <Link v-for="blog in props.blogs.data" :key="blog.id" :href="`/blogs/${blog.id}`">
+                    <BlogCard :data="blog" />
+                </Link>
             </div>
         </div>
 
@@ -14,7 +16,6 @@
         <div class="mt-20">
             <Hero :data="heroData" />
             <!-- <div class="w-full h-[40rem] bg-red-300"></div> -->
-
             <div class="container mt-10 w-full md:w-[40rem] px-3 md:px-0">
                 <h5 class="mb-3">Hey There!</h5>
                 <p class="mb-5">"You can call me Jay. I'm a late bloomer when it comes to software engineering. I

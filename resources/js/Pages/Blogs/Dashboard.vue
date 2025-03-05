@@ -118,9 +118,9 @@
                 <img :src="selectedBlog?.image
                     ? '/storage/' + selectedBlog.image
                     : defaultImage
-                    " alt="Blog Image" class="mx-auto w-full h-40 mb-4" />
-                <h1 class="text-xl font-bold mb-2">{{ selectedBlog.title }}</h1>
-                <p>{{ selectedBlog.content }}</p>
+                    " alt="Blog Image" class="mx-auto w-96 mb-4" />
+                <h1 class="text-xl font-bold mb-2 text-center">{{ selectedBlog.title }}</h1>
+                <p class="mt-10">{{ selectedBlog.content }}</p>
             </template>
 
             <!-- Edit Blog -->
